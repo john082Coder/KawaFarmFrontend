@@ -9,25 +9,17 @@ import { BalancesProvider } from "contexts/Balances";
 import { FarmingProvider } from "contexts/Farming";
 import { MigrationProvider } from "contexts/Migration";
 import { PricesProvider } from "contexts/Prices";
-import { VestingProvider } from "contexts/Vesting";
-import { GovernanceProvider } from "contexts/Governance";
+
 import YamProvider from "contexts/YamProvider";
 import useLocalStorage from "hooks/useLocalStorage";
 
 import Farm from "views/Farm";
 import FAQ from "views/FAQ";
-import Home from "views/Home";
-import Migrate from "views/Migrate";
 import Dashboard from "views/Dashboard";
-import Governance from "views/Governance";
+
 import Addresses from "views/Addresses";
 import Umbrella from "views/Landings/Umbrella";
 import Daohouse from "views/Landings/Daohouse";
-import Contributor from "views/Contributor";
-import Delegate from "views/Delegate";
-import Claim from "views/Claim";
-import Start from "views/Start";
-import Registration from "views/Registration";
 
 
 const App: React.FC = () => {
@@ -38,50 +30,10 @@ const App: React.FC = () => {
         <TopBar />
         <Switch>
           <Route exact path="/">
-            <Start />
+            <Farm />
           </Route>
           <Route exact path="/farm">
             <Farm />
-          </Route>
-          <Route path="/faq">
-            <FAQ />
-          </Route>
-          <Route exact path="/migrate">
-            <Migrate />
-          </Route>
-          <Route exact path="/dashboard">
-            <Dashboard />
-          </Route>
-          <Route exact path="/treasury">
-            <Dashboard />
-          </Route>
-          <Route exact path="/governance">
-            <Governance />
-          </Route>
-          <Route exact path="/addresses">
-            <Addresses />
-          </Route>
-          <Route exact path="/umbrella">
-            <Umbrella />
-          </Route>
-          <Route exact path="/daohouse">
-            <Daohouse />
-          </Route>
-
-          <Route exact path="/contributor">
-            <Contributor />
-          </Route>
-          <Route exact path="/contributors">
-            <Contributor />
-          </Route>
-          <Route exact path="/delegate">
-            <Delegate />
-          </Route>
-          <Route exact path="/claim">
-            <Claim />
-          </Route>
-          <Route exact path="/register">
-            <Registration />
           </Route>
         </Switch>
       </Providers>
@@ -101,9 +53,9 @@ const Providers: React.FC = ({ children }) => {
   return (
     <ThemeProvider darkModeEnabled={darkModeSetting} darkTheme={darkTheme} lightTheme={lightTheme}>
       <UseWalletProvider
-        chainId={1}
+        chainId={4}
         connectors={{
-          walletconnect: { rpcUrl: "https://mainnet.eth.aragon.network/" },
+          walletconnect: { rpcUrl: "https://rinkeby.eth.aragon.network/" },
         }}
       >
         <YamProvider>
@@ -111,9 +63,9 @@ const Providers: React.FC = ({ children }) => {
             <BalancesProvider>
               <FarmingProvider>
                 <MigrationProvider>
-                  <VestingProvider>
-                    <GovernanceProvider>{children}</GovernanceProvider>
-                  </VestingProvider>
+                  
+                   {children}
+                  
                 </MigrationProvider>
               </FarmingProvider>
             </BalancesProvider>

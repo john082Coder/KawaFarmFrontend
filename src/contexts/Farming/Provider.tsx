@@ -4,7 +4,7 @@ import BigNumber from "bignumber.js";
 import { useWallet } from "use-wallet";
 
 import ConfirmTransactionModal from "components/ConfirmTransactionModal";
-import { YAMETHSLPAddress, yycrvUniLp as yycrvUniLpAddress } from "constants/tokenAddresses";
+import { KawaPoolAddress, KAWA as KawaAddress } from "constants/tokenAddresses";
 import useApproval from "hooks/useApproval";
 import useYam from "hooks/useYam";
 
@@ -36,7 +36,7 @@ const Provider: React.FC = ({ children }) => {
   //   setConfirmTxModalIsOpen(false)
   // );
   const YAMETHPoolAddress = yam ? yam.contracts.voting_eth_pool.options.address : "";
-  const { isApproved, isApproving, onApprove } = useApproval(YAMETHSLPAddress, YAMETHPoolAddress, () => setConfirmTxModalIsOpen(false));
+  const { isApproved, isApproving, onApprove } = useApproval(KawaAddress, KawaPoolAddress, () => setConfirmTxModalIsOpen(false));
 
   const fetchEarnedBalanceYAMYUSD = useCallback(async () => {
     if (!account || !yam) return;
@@ -165,34 +165,6 @@ const Provider: React.FC = ({ children }) => {
     },
     [account, setConfirmTxModalIsOpen, setIsUnstaking, yam]
   );
-
-  const fetchTVL = useCallback(async () => {
-    if (!yam) return;
-    const tvl = await getTVL(yam);
-    setTVL(tvl);
-  }, [setTVL, yam]);
-
-  const fetchAPR = useCallback(async () => {
-    if (!yam) return;
-    const BoU = 5000;
-    const factor = bnToDec(await getScalingFactor(yam));
-    const price = bnToDec(await getCurrentPrice(yam));
-    const tvl = await getTVL(yam);
-    const calc = ((((BoU * factor * price) / 7) * 365.5) / tvl) * 100;
-    setAPR(calc);
-  }, [setAPR, yam]);
-
-  useEffect(() => {
-    fetchTVL();
-    let refreshInterval = setInterval(fetchTVL, 100000);
-    return () => clearInterval(refreshInterval);
-  }, [fetchTVL]);
-
-  useEffect(() => {
-    fetchAPR();
-    let refreshInterval = setInterval(fetchAPR, 1000000);
-    return () => clearInterval(refreshInterval);
-  }, [fetchAPR]);
 
   useEffect(() => {
     fetchBalances();

@@ -1,39 +1,35 @@
-# Yam.finance 🍠
 
-> The YAM core website application.
+## Environment Setup 🎈
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-# What is YAM?
+### `npm install`
 
-YAM is the governance token for the YAM protocol. A decentralized cryptocurrency with treasury managed by the community. The community can then use those funds via YAM governance to build out the protocol.
+Installs npm packages used in the project.
 
-## Available at
+## Available Scripts 💻
 
-https://yam.finance/ - Live website
-<a href="https://app.netlify.com/sites/epic-goldberg-1d6f10/deploys" target="_blank">![Netlify Status](https://api.netlify.com/api/v1/badges/c6e1a55f-0f94-4b2d-937c-0749cf108ebd/deploy-status)</a>
+In the project directory, you can run:
 
-https://develop.yam.finance/ - Devleopment builds
-<a href="https://app.netlify.com/sites/naughty-villani-786b2d/deploys" target="_blank">![Netlify Status](https://api.netlify.com/api/v1/badges/aeee282a-58a9-4cf7-8965-a9cafc836168/deploy-status)</a>
+### `npm start`
 
-## Developments
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-**Install deps**
+### `npm test`
 
-```sh
-yarn install
-```
+Launches the test runner in the interactive watch mode.\
 
-**Start the project**
+### `npm run build`
 
-```sh
-yarn start
-```
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-## Contributions
+## Learn More
 
-If you are interested to contribute feel free to [open an issue](https://github.com/yam-finance/yam-www/issues) or [submit PR](https://github.com/yam-finance/yam-www/pulls) to the `develop` branch. If an issue has the tag `assigned` means it has already been assigned to someone.
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-For any other questions or bugs that you like to submit please join [the chat](https://discord.gg/TgFpmDj) to speak about it.
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-## License
+# Copyright
 
-[MIT](LICENSE)
+Copyright © 2021 PayrLink Team

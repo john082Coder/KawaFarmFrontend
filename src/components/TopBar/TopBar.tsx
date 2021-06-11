@@ -51,11 +51,9 @@ const TopBar: React.FC<TopBarProps> = () => {
                 <DarkModeSwitch />
               </StyledTopBarDarkModeSwitch>
               <Spacer />
-              { location.pathname !== '/' ? (
+            
                 <WalletButton />
-              ) : (
-                <Button size="sm" text="Open App" to="/dashboard" />
-              )}
+            
             </StyledAccountButtonWrapper>
             { location.pathname !== '/' && (
               <>

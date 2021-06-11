@@ -33,23 +33,12 @@ const Farm: React.FC = () => {
 
   return (
     <Page>
-      <PageHeader icon="🌾🍠" subtitle="Stake YAM/ETH Sushiswap LP tokens and grow YAMs" title="Farm" />
+      <PageHeader icon="🌾🍠" subtitle="Stake KAWA and grow xKAWA" title="Farm" />
       <Container>
         <HarvestLPsNoticeYAMYUSD />
         <ResumedLPsNotice />
         {/* <PausedLPsNotice /> */}
-        <Card>
-          <CardContent>
-            <FancyValue
-              wrap
-              value={tvl ? `TVL $${numeral(tvl).format("000,000,000")}` : "Loading TVL..."}
-              valueSize="54px"
-              valueColor={colors.primary.main}
-              valueBold="800"
-              label={apr ? `APR ${numeral(apr).format("0.00a")}%` : "Loading APR..."}
-            />
-          </CardContent>
-        </Card>
+       
         <Spacer />
         <Split>
           <StakeCard />

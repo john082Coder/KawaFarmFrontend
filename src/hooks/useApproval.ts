@@ -21,6 +21,7 @@ const useApproval = (tokenAddress?: string, spenderAddress?: string, onTxHash?: 
     try {
       setIsApproving(true);
       const result = await approve(account, spenderAddress, tokenAddress, ethereum, onTxHash);
+      console.log("result = ", result);
       setIsApproved(result);
       setIsApproving(false);
     } catch (e) {
