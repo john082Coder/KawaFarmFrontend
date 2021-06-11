@@ -4,7 +4,7 @@ import ExcMark from "../assets/exclamation.svg";
 import ExcMarkWhite from "../assets/exclamation-white.svg";
 import Metamask from "../assets/metamask.svg";
 import MetamaskDark from "../assets/metamask-dark.svg";
-import WConnect from "../assets/wallet-Connect.svg";
+import WConnect from "../assets/wallet-connect.svg";
 import WConnectDark from "../assets/wallet-Connect-dark.svg";
 
 function ConectWallet(props) {
