@@ -141,7 +141,7 @@ const FarmCard = (props) => {
         <>
             {(rows[0].length > 0) ? (
                 rows.map((poolRow, i) => (
-                    <div key={i} md="10" lg="6" xl="4">
+                    <div key={i} md="10" lg="6" xl="4" style ={{display:'inline-flex'}}>
                         {poolRow.map((pool, j) => (
                             <PoolCard
                                 key={j}
@@ -462,7 +462,7 @@ const PoolCard = (props) => {
                     <div>
                         <h5 className="mb-0 font-weight-bold">{props.pool.name} POOL</h5>
                         {/* <span className="badge badge-pill badge-primary">{props.pool.multiply}x</span> */}
-                        <span className="badge badge-pill badge-primary">{'EARN PAYR'}</span>
+                        <span className="badge badge-pill badge-primary">{'EARN xKawa'}</span>
                     </div>
                 </div>
             

@@ -30,12 +30,85 @@ export const supportedPools = [
       1: '0x0',
       4: '0x2f997B58a2a21f179dd76De40aA2277C81948084',
     },
+    name: 'tShib',
+    symbol: 'tShib',
+    tokenSymbol: 'xKawa',
+    icon: '',
+    pool: '100%',
+  },
+  {
+    pid: 1,
+    lpAddresses: {
+      42: '0xf9f89F9dF418664cFAF5f8669d846269e49Ca6f1',
+      1: '0x0',
+      4: '0x37d3C98483745bc273B813c16922D76020C40BBA'
+    },
+    tokenAddresses: {
+      42: '0x175D9b7BEf31cC753D1d94Ee70d90F23aBF94070',
+      1: '0x0',
+      4: '0x2f997B58a2a21f179dd76De40aA2277C81948084',
+    },
+    name: 'ELON',
+    symbol: 'ELON',
+    tokenSymbol: 'xKawa',
+    icon: '',
+    pool: '100%',
+  },
+  {
+    pid: 2,
+    lpAddresses: {
+      42: '0xf9f89F9dF418664cFAF5f8669d846269e49Ca6f1',
+      1: '0x0',
+      4: '0x37d3C98483745bc273B813c16922D76020C40BBA'
+    },
+    tokenAddresses: {
+      42: '0x175D9b7BEf31cC753D1d94Ee70d90F23aBF94070',
+      1: '0x0',
+      4: '0x2f997B58a2a21f179dd76De40aA2277C81948084',
+    },
     name: 'KAWA',
     symbol: 'KAWA',
     tokenSymbol: 'xKawa',
     icon: '',
     pool: '100%',
   },
+  {
+    pid: 3,
+    lpAddresses: {
+      42: '0xf9f89F9dF418664cFAF5f8669d846269e49Ca6f1',
+      1: '0x0',
+      4: '0x37d3C98483745bc273B813c16922D76020C40BBA'
+    },
+    tokenAddresses: {
+      42: '0x175D9b7BEf31cC753D1d94Ee70d90F23aBF94070',
+      1: '0x0',
+      4: '0x2f997B58a2a21f179dd76De40aA2277C81948084',
+    },
+    name: 'AKITA',
+    symbol: 'AKITA',
+    tokenSymbol: 'xKawa',
+    icon: '',
+    pool: '100%',
+  },
+  {
+    pid: 4,
+    lpAddresses: {
+      42: '0xf9f89F9dF418664cFAF5f8669d846269e49Ca6f1',
+      1: '0x0',
+      4: '0x37d3C98483745bc273B813c16922D76020C40BBA'
+    },
+    tokenAddresses: {
+      42: '0x175D9b7BEf31cC753D1d94Ee70d90F23aBF94070',
+      1: '0x0',
+      4: '0x2f997B58a2a21f179dd76De40aA2277C81948084',
+    },
+    name: 'KISHU',
+    symbol: 'KISHU',
+    tokenSymbol: 'xKawa',
+    icon: '',
+    pool: '100%',
+  },
+  
 
   
 ]
