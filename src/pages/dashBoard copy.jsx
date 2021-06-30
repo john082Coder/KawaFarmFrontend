@@ -53,13 +53,13 @@ const DashBoard = () => {
             <Container>
                 <Row>
                     <Col xl="12" className="p-2 pt-4">
-                        <h2 className="font-weight-bold">Stake several tokens to earn xKAWA</h2>
+                        <div className="font-weight-bold ">Stake several tokens to earn xKAWA</div>
                         <hr />
                     </Col>
                 </Row>
                 <Row className="pb-2">
                     <Col>
-                        Showing 5 staking pools
+                        Showing <span style={{ 'font-weight': 'bold' }}>5 staking pools</span>
                     </Col>
                 </Row>
                 <Row className="">
