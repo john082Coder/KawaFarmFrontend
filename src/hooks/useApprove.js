@@ -5,10 +5,11 @@ import { useWallet } from 'use-wallet';
 
 import { approve, getFarmContract } from '../contracts/utils';
 
-const useApprove = (lpContract) => {
+const useApprove = (lpContract, farmContract=null) => {
   const { account } = useWallet();
   const payr = usePayr();
-  const farmContract = getFarmContract(payr);
+  if(farmContract === null)
+   farmContract = getFarmContract(payr);
 
   const handleApprove = useCallback(async () => {
     try {

@@ -1,7 +1,9 @@
 import { UseWalletProvider } from 'use-wallet';
 
 import "../scss/App.scss";
+import "../App.css"
 import Route from "../route/index";
+import "../scss/style.css"
 
 import PayrProvider from '../contexts/PayrProvider';
 import FarmsProvider from '../contexts/Farms';

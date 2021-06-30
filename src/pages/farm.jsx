@@ -129,7 +129,7 @@ const Farm = () => {
         }`}
       >
         <Col xl="10" className="">
-          <h2 className="font-weight-bold">Stakess several tokens to earn xKAWA</h2>
+          <h2 className="font-weight-bold">Stake several tokens to earn xKAWA</h2>
          
           {userAccount ? (
             <Row className="my-4 justify-content-center justify-content-lg-start">

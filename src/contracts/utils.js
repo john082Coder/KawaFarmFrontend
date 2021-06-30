@@ -17,7 +17,7 @@ export const getWethContract = (payr) => {
   return payr && payr.contracts && payr.contracts.weth;
 }
 
-export const getFarmContract = (payr) => {
+export const getFarmContract = (payr, ) => {
   return payr && payr.contracts && payr.contracts.farm;
 }
 export const getERC20Contract = (payr) => {
@@ -35,9 +35,11 @@ export const getFarms = (payr) => {
           tokenAddress,
           tokenSymbol,
           tokenContract,
+          farmContract,
           lpAddress,
           lpContract,
           pool,
+          poolTitle
         }) => ({
           pid,
           id: symbol,
@@ -48,10 +50,12 @@ export const getFarms = (payr) => {
           tokenAddress,
           tokenSymbol,
           tokenContract,
+          farmContract,
           earnToken: tokenSymbol,
           earnTokenAddress: payr.contracts.erc20.options.address,
           icon,
           pool,
+          poolTitle
         }),
       )
     : []

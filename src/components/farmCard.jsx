@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Row, Col, Button, Modal, Accordion, Form } from 'react-bootstrap';
+import { Row, Col, Button, Modal, Accordion, Form, Card, Image, Badge, InputGroup, Spinner } from 'react-bootstrap';
 import BigNumber from 'bignumber.js'
 
 import useFarms from '../hooks/useFarms';
@@ -24,6 +24,11 @@ import { bnToDec } from '../utils';
 import useAllowance from '../hooks/useAllowance';
 import useApprove from '../hooks/useApprove';
 import { useCallback } from 'react';
+import dogeCoin from "../assets/dogeCoin.svg";
+import kawaCoin from "../assets/kawaCoin.svg";
+import shibaCoin from "../assets/shibaCoin.svg";
+import kishuCoin from "../assets/kishuCoin.svg";
+import akitaCoin from "../assets/akitaCoin.svg";
 
 function ContextAwareToggle({ children, eventKey,theme, callback }) {
     const currentEventKey = useContext(AccordionContext);
@@ -143,15 +148,9 @@ const FarmCard = (props) => {
                 rows.map((poolRow, i) => (
                     <div key={i} md="10" lg="6" xl="4" style ={{display:'inline-flex'}}>
                         {poolRow.map((pool, j) => (
-                            <PoolCard
-                                key={j}
-                                pool={pool}
-                                account={props.account}
-                                clickHarvest={clickHarvest}
-                                setModalShow={setModalShow}
-                                clickDeposit={clickDeposit}
-                                clickWithdraw={clickWithdraw}
-                            />
+                           
+                            
+                            <CoinCard pool={pool}/>
                         ))}
                     </div>
                 ))
@@ -379,32 +378,47 @@ const FarmCard = (props) => {
     );
 }
 
-const PoolCard = (props) => {
 
-    const [earned, setEarned] = useState(0);
+const CoinCard = (props) => {
+    const cardData = props?.pool;
+    const [headerMessage, setheaderMessage] = useState();
+    const [showBox, setShowBox] = useState("approve");
+    const [prevType, setprevType] = useState("approveContract");
     const [poolWeight, setPoolWeight] = useState(0);
     const [staked, setStaked] = useState(0);
     const [totalLpValue, setTotalLpValue] = useState(0);
+    const [earned, setEarned] = useState(0);
+    const [loader, setLoader] = useState(false);
+    const { pid } = props.pool;
+    const { account } = useWallet();
+    const payr = usePayr();
+    const allowance = useAllowance(cardData.lpContract, cardData.farmContract);
+    const { onApprove } = useApprove(cardData.lpContract, cardData.farmContract);
+    const [isContractApproved, setIsContractApproved] = useState(false);
     const [requestedApproval, setRequestedApproval] = useState(false);
 
-    const { account } = useWallet();
-    const { pid } = props.pool;
-    const payr = usePayr();
-    const allowance = useAllowance(props.pool.lpContract);
-    const { onApprove } = useApprove(props.pool.lpContract);
+    const [depositAmount, setDepositAmount] = useState(0);
+    const [withdrawAmount, setWithdrawAmount] = useState(0);
+    const [pendingDeposit, setPendingDeposit] = useState(false);
+    const [pendingWithdraw, setPendingWithdraw] = useState(false);
+    const [pendingHarvest, setPendingHarvest] = useState(false);
+    const [lPBalance, setLPBalance] = useState(null);
+    const [stakedBalance, setStakedBalance] = useState(null);
+    const [earnedBalance, setEarnedBalance] = useState(null);
 
     useEffect(() => {
         async function fetchEarned() {
             if (!payr) return;
-            const farmContract = getFarmContract(payr);
+            //const farmContract = getFarmContract(payr);
+            const farmContract = cardData.farmContract;
             const earned = await getEarned(
                 farmContract,
                 pid,
                 account
             );
             const decimals = await props.pool.tokenContract.methods.decimals().call();
-            console.log("earned = ", bnToDec(new BigNumber(earned)).toFixed(8));
-            setEarned(bnToDec(new BigNumber(earned), decimals).toFixed(8));
+            console.log("earned = ", bnToDec(new BigNumber(earned)).toFixed(4));
+            setEarned(bnToDec(new BigNumber(earned), decimals).toFixed(4));
            const poolWeight = await getPoolWeight(
                 farmContract,
                 pid
@@ -428,20 +442,14 @@ const PoolCard = (props) => {
         let refreshInterval = setInterval(fetchEarned, 10000)
         return () => clearInterval(refreshInterval)
     }, [payr, account, pid]);
-
-    let poolApy;
-    if (props.pool.apy && props.pool.apy.isNaN()) {
-        poolApy = '- %';
-    } else {
-        poolApy = props.pool.apy
-            ? `${props.pool.apy
-                .times(new BigNumber(100))
-                .toNumber()
-                .toLocaleString('en-US')
-                .slice(0, -1) || '-' }%`
-            : 'Loading ...';
-    }
-
+    useEffect(() => {
+        if(allowance.toNumber() && staked >0 )
+        {
+            if(showBox === "approve")
+            setShowBox("withdrawaddmore");
+        }
+    
+    }, [staked, earned]);
     const handleApprove = useCallback(async () => {
         try {
             setRequestedApproval(true);
@@ -453,124 +461,539 @@ const PoolCard = (props) => {
             console.log(e);
         }
     }, [onApprove, setRequestedApproval]);
+    const handleStake = async () => {
+        setShowBox("depositcancel");
+
+        setDepositAmount(0);
+        const balance = await cardData.lpContract.methods
+            .balanceOf(account)
+            .call();
+            console.log("asdfasdf",bnToDec(new BigNumber(balance)))
+        setLPBalance(bnToDec(new BigNumber(balance)));
+    };
+
+
+    const handleClickButton = (value, cancel = true) => {
+        if (prevType === 'approveCOntract' && value === "noContract") {
+            setIsContractApproved(true);
+        }
+        setheaderMessage();
+        setLoader(true);
+        if (prevType === value) {
+            setLoader(false);
+        }
+        if (!cancel) {
+            setLoader(true);
+        }
+        setTimeout(() => {
+            setLoader(false);
+        }, 1000);
+        console.log("prev:", showBox);
+
+    }
+    const handleCancel = (from) => {
+        if(from === "deposit")
+            setShowBox("approve");
+        if(from === "add")
+            setShowBox("withdrawaddmore")
+        if(from==="withdraw")
+            setShowBox("withdrawaddmore")
+        if(from === "harvest")
+            setShowBox("withdrawaddmore")
+    }
+    const handleAddMore = async () => {
+        setShowBox("addcancel");
+        setDepositAmount(0);
+        const balance = await cardData.lpContract.methods
+            .balanceOf(account)
+            .call();
+            console.log("asdfasdf",bnToDec(new BigNumber(balance)))
+        setLPBalance(bnToDec(new BigNumber(balance)));
+    }
+    const handleWithdraw = async () => {
+        setShowBox("withdrawcancel");
+        setWithdrawAmount(0);
+        const balance = await getStaked(
+            cardData.farmContract,
+            cardData.pid,
+            account
+        );
+        setStakedBalance(bnToDec(new BigNumber(balance.toNumber())));
+    }
+    const handleHarvest = async () => {
+        setShowBox("harvestcancel");
+        const balance = await getEarned(
+            cardData.farmContract,
+            cardData.pid,
+            account
+        );
+        setEarnedBalance(bnToDec(new BigNumber(balance)));
+    }
 
     return (
-        <Col className="farm_card px-md-4 mb-5">
-            <div className="p-4 card_sec shadow border_radius">
-                <div className="d-flex mb-4">
-                    <img alt="icon" src={props.pool.icon ? props.pool.icon : ETH} height="40" className="mr-3" />
+    <Card style={{ width: '22rem' }} className="stake_card p-0 m-0 mr-2 mt-2">
+            {headerMessage && <Card.Header style={{ height: '24px', padding: 0, margin: 0, textAlign: "center" }}><small style={{ marginInline: 'auto', color: "#136F1C" }}>{headerMessage}</small></Card.Header>}
+            <Card.Header style={{ backgroundColor: "#FFF", borderTopRightRadius: '25px', borderTopLeftRadius: '25px' }}>
+                <div className="d-flex justify-content-around p-4">
+                    <div><Image src={cardData.icon} roundedCircle style={{ maxWidth: '50px', maxHeight: '50px' }} /></div>
                     <div>
-                        <h5 className="mb-0 font-weight-bold">{props.pool.name} POOL</h5>
-                        {/* <span className="badge badge-pill badge-primary">{props.pool.multiply}x</span> */}
-                        <span className="badge badge-pill badge-primary">{'EARN xKawa'}</span>
+                        <h5 className="m-0">{cardData.poolTitle}</h5>
+                        <small>{cardData.name}-xKAWA</small>
                     </div>
                 </div>
-            
-                <table className="w-100">
-                    <tbody>
-                        {/* <tr>
-                            <td><h5>APY</h5></td>
-                            <td><h5 className="font-weight-bold text-right">{poolApy}</h5></td>
-                        </tr> */}
-                        <tr>
-                            <td><h5>WEIGHT</h5></td>
-                            <td><h5 className="font-weight-bold text-right">{poolWeight}%</h5></td>
-                        </tr>
-                        <tr>
-                            <td><h5>STAKE</h5></td>
-                            <td><h5 className="font-weight-bold text-right">{props.pool.lpToken}</h5></td>
-                        </tr>
-                        <tr>
-                            <td><h5>EARN</h5></td>
-                            <td><h5 className="font-weight-bold text-right">{props.pool.earnToken}</h5></td>
-                        </tr>
-                    </tbody>
-                </table>
-            
-                <div className="bg_harvest border_radius p-3 font-weight-bold mb-4">
-                    <span className="text_app">xKAWA EARNED</span>
-                    <div className="d-flex justify-content-between">
-                        <h3 className="text_app font-weight-bold">{earned}</h3>
-                        <Button 
-                            size="sm" 
-                            className="py-1 px-3 shadow border-0 bg_app_dark h-100 rounded" 
-                            onClick={() => props.clickHarvest(props.pool)}
-                        >
-                            <h6 className="mb-0">HARVEST</h6>
-                        </Button>
+                <div className="d-flex justify-content-around p-4">
+                    <div>
+                        <h6 className='mb-0' style={{ color: '#977D83' }}>Weight</h6>
+                        <strong>100$</strong>
                     </div>
-                    <span className="text_app">{props.pool.name} STAKED</span>
-                    <h3 className="text_app font-weight-bold">{staked}</h3>
+                    <div>
+                        <h6 className='mb-0' style={{ color: '#977D83' }}>Stake</h6>
+                        <strong>{cardData.lpToken}</strong>
+                    </div>
+                    <div>
+                        <h6 className='mb-0' style={{ color: '#977D83' }}>Earn</h6>
+                        <strong><Badge pill variant="light" className="tagKawa">XKawa</Badge></strong>
+                    </div>
                 </div>
-            
-                {props.account === null ?
-                    <Button 
-                        className="font-weight-bold w-100 bg_app_dark rounded border-0" 
-                        onClick={() => props.setModalShow(true)}
-                    >
-                        UNLOCK WALLET
-                    </Button>
-                :   <>
+
+            </Card.Header>
+            {showBox === 'approve' && <Card.Body className="cardBodyColor">
+                <div className="cardBox m-1 p-2" style={{ opacity: '0.5' }}>
+                    <Row>
+                        <Col lg={12}>
+                            <div className="d-flex justify-content-between p-0">
+                                <div>
+                                    <small className="card_stake_text"><strong style={{ paddingLeft: 16 }}>STAKED</strong></small>
+                                    <Form.Control size="lg" style={{ border: "none" }} type="text" value={staked} disabled />
+                                </div>
+                                <div className="py-2">
+                                    <InputGroup.Prepend >
+                                        <InputGroup.Text style={{ background: "#fff", border: 'none' }}>
+                                            <small><strong className="card_stake_text pt-2">
+                                            {cardData.stake}
+                                            </strong></small>
+                                        </InputGroup.Text>
+                                    </InputGroup.Prepend>
+                                </div>
+                            </div>
+                        </Col>
+                        <Col lg={12}>
+                            <div className="d-flex justify-content-between p-0">
+                                <div>
+                                    <small className="card_stake_text"><strong style={{ paddingLeft: 16 }}>xKAWA EARNED</strong></small>
+                                    <Form.Control size="lg" style={{ border: "none" }} type="text" value={earned} disabled />
+                                </div>
+                                <div className="py-2">
+                                    <InputGroup.Prepend >
+                                        <InputGroup.Text style={{ background: "#fff", border: 'none' }}>
+                                            <small><strong className="card_stake_text pt-2">
+                                                <Button className="cardButton" disabled style={{ border: "none", background: "rgba(239, 239, 239, 0.6)", color: "#ABABAB" }}>Harvest</Button>
+                                            </strong></small>
+                                        </InputGroup.Text>
+                                    </InputGroup.Prepend>
+                                </div>
+                            </div>
+                        </Col>
+                    </Row>
+
+                </div>
+                <Row className="p-2">
+                    <Col lg={12}>
+
                         {!allowance.toNumber() ? (
                             <>
                             {requestedApproval ? (
-                                <Button 
-                                    disabled={true}
-                                    className="font-weight-bold w-100 bg_app_dark rounded border-0 mb-2"
-                                >
-                                    Approving...
-                                </Button>    
-                            ) : (
-                                <Button 
-                                    className="font-weight-bold w-100 bg_app_dark rounded border-0 mb-2"
-                                    onClick={handleApprove}
-                                >
-                                    Approve {props.pool.name}
+                                <Button variant="light" className="loaderButton" disabled block><strong>
+                                    <Spinner
+                                        as="span"
+                                        animation="border"
+                                        size="sm"
+                                        role="status"
+                                        aria-hidden="true"
+                                    />
+                                    Approving...</strong>
                                 </Button>
+                            ): (
+                                <Button variant="light" style={{ border: '1px solid #E6E5E5' }} onClick={handleApprove} block><strong>Approve Contract</strong></Button>
                             )}
                             </>
-                        ) : (
-                            <>
-                                <Button 
-                                    className="font-weight-bold w-100 bg_app_dark rounded border-0 mb-2" 
-                                    onClick={() => props.clickDeposit(props.pool)}
-                                >
-                                    DEPOSIT
-                                </Button>
-                                <Button 
-                                    variant="outline-primary" 
-                                    className="font-weight-bold w-100 rounded app_border" 
-                                    onClick={() => props.clickWithdraw(props.pool)}
-                                >
-                                    WITHDRAW
-                                </Button>
-                            </>
-                        )}                        
-                    </>
-                }
-                
-                <Accordion>
-                    <ContextAwareToggle eventKey="1" theme={props.themeClass} />
-
-                    <Accordion.Collapse eventKey="1">
-                        <div>
-                            <table className="w-100">
-                                <tbody>
-                                    <tr>
-                                        <td><h5>TOTAL VALUE</h5></td>
-                                        <td><h5 className="font-weight-bold text-right"><span className="text_app font-weight-bold">{totalLpValue}</span> {props.pool.name}</h5></td>
-                                    </tr>
-                                    <tr>
-                                        <td><h5>MY STAKED</h5></td>
-                                        <td><h5 className="font-weight-bold text-right"><span className="text_app font-weight-bold">{staked}</span> {props.pool.name}</h5></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        ) : (    
+                                    <Row className="p-2">
+                                        <Col lg={12} style={{ display: "grid" }}>
+                                            <Button className="addMore" disabled={loader} onClick={ handleStake } block>Stake</Button>
+                                        </Col>
+                                    </Row>           
+                            )}       
+                    </Col>
+                </Row>
+                <div className="p-4">
+                    <Row>
+                        <Col lg={6} className="text-center">
+                            <small className="card_stake_text">
+                                TOTAL VALUE
+                            </small>
+                        </Col>
+                        <Col lg={6} className="text-center">
+                            <small className="card_stake_text">
+                                MY STAKE
+                            </small>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col lg={6} className="text-center">
+                            <small className="card_stake_text">
+                                {totalLpValue} {cardData.name}
+                            </small>
+                        </Col>
+                        <Col lg={6} className="text-center">
+                            <small className="card_stake_text">
+                                {staked} {cardData.name}
+                            </small>
+                        </Col>
+                    </Row>
+                </div>
+            </Card.Body> }
+            {showBox === 'depositcancel' && <Card.Body className="cardBodyColor">
+                <Row>
+                    <Col lg={12} className="px-4">
+                        <h5>Deposit</h5>
+                    </Col>
+                    <Col lg={12}>
+                        <div className="cardBox m-1 p-2">
+                            <Row>
+                                <Col lg={12} className="">
+                                    <div className="d-flex justify-content-between p-0">
+                                        <div className="mr-1">
+                                            <Form.Control size="lg" style={{ border: "none" }} as="input" type="number" value={depositAmount} onChange={(val) => setDepositAmount(val.target.value)} />
+                                        </div>
+                                        <div className="py-2">
+                                            <InputGroup.Prepend >
+                                                <InputGroup.Text style={{ background: "#fff", border: 'none' }}>
+                                                    <small><strong className="card_stake_text pt-2">
+                                                    {cardData.name}
+                                                    </strong></small>
+                                                    <Badge className="mt-1" style={{ background: '#FFFBEC', color: "#D5A600", marginBottom: 4, cursor:'pointer' }} onClick={()=>{setDepositAmount(lPBalance)}}>MAX</Badge>
+                                                </InputGroup.Text>
+                                            </InputGroup.Prepend>
+                                        </div>
+                                    </div>
+                                </Col>
+                            </Row>
                         </div>
-                    </Accordion.Collapse>
-                </Accordion>
-            </div>
-        </Col>
+                    </Col>
+                </Row>
+                <Row className='p-2'>
+                    {!pendingDeposit ?
+                        <Button className="addMore" size="lg" disabled={loader} block onClick={async () => {
+                            setPendingDeposit(true);
+                            try {
+                                const txHash = await stake(
+                                    cardData.farmContract,
+                                    cardData.pid,
+                                    depositAmount,
+                                    account,
+                                );
+                                setPendingDeposit(false);
+                                setShowBox("withdrawaddmore");
+                
+                            } catch (e) {
+                                console.log(e);
+                                setPendingDeposit(false);
+                                setShowBox("approve")
+                            }
+                        }}
+                        >
+                            DEPOSIT
+                        </Button>
+                        :
+                        <Button className="loaderButton" disabled={loader} size="lg" block >
+                            <Spinner
+                                as="span"
+                                animation="border"
+                                size="sm"
+                                role="status"
+                                aria-hidden="true"
+                            />{` `}PENDING DEPOSIT...
+                        </Button>
+                    }
+                    <Button className="withDrawButton" size="lg" block disabled={loader} onClick={()=>{handleCancel("deposit");}}>
+                        Cancel
+                    </Button>
+                </Row>
+            </Card.Body>}
+            {showBox === 'withdrawaddmore' && <Card.Body className="cardBodyColor ">
+                <div className="cardBox m-1 p-2">
+                    <Row>
+                        <Col lg={12}>
+                            <div className="d-flex justify-content-between p-0">
+                                <div>
+                                    <small className="card_stake_text"><strong style={{ paddingLeft: 16 }}>STAKED</strong></small>
+                                    <Form.Control size="lg" style={{ border: "none" }} type="text" value={staked} disabled />
+                                </div>
+                                <div className="py-2">
+                                    <InputGroup.Prepend >
+                                        <InputGroup.Text style={{ background: "#fff", border: 'none' }}>
+                                            <small><strong className="card_stake_text pt-2">
+                                            {cardData.stake}
+                                            </strong></small>
+                                        </InputGroup.Text>
+                                    </InputGroup.Prepend>
+                                </div>
+                            </div>
+                        </Col>
+                        <Col lg={12}>
+                            <div className="d-flex justify-content-between p-0">
+                                <div>
+                                    <small className="card_stake_text"><strong style={{ paddingLeft: 16 }}>xKAWA EARNED</strong></small>
+                                    <Form.Control size="lg" style={{ border: "none" }} type="text" value={earned} disabled />
+                                </div>
+                                <div className="py-2">
+                                    <InputGroup.Prepend >
+                                        <InputGroup.Text style={{ background: "#fff", border: 'none' }}>
+                                            <small><strong className="card_stake_text pt-2">
+                                                <Button className="cardButton" onClick={() => { handleHarvest();}}>Harvest</Button>
+                                            </strong></small>
+                                        </InputGroup.Text>
+                                    </InputGroup.Prepend>
+                                </div>
+                            </div>
+                        </Col>
+                    </Row>
+
+                </div>
+                <Row className="-2">
+                    <Col lg={6} style={{ display: "grid" }}>
+                        <Button className="withDrawButton" disabled={loader} onClick={() => { handleWithdraw();}}>Withdraw</Button>
+                    </Col>
+                    <Col lg={6} style={{ display: "grid" }}>
+                        <Button className="addMore" disabled={loader} onClick={() => { handleAddMore(); }}>Add More</Button>
+                    </Col>
+                </Row>
+                <div className="p-4">
+                    <Row>
+                        <Col lg={6} className="text-center">
+                            <small className="card_stake_text">
+                                TOTAL VALUE
+                            </small>
+                        </Col>
+                        <Col lg={6} className="text-center">
+                            <small className="card_stake_text">
+                                MY STAKE
+                            </small>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col lg={6} className="text-center">
+                            <small className="card_stake_text">
+                                {totalLpValue} {cardData.name}
+                            </small>
+                        </Col>
+                        <Col lg={6} className="text-center">
+                            <small className="card_stake_text">
+                                {staked} {cardData.name}
+                            </small>
+                        </Col>
+                    </Row>
+                </div>
+            </Card.Body>}
+            {showBox === 'addcancel' && <Card.Body className="cardBodyColor">
+                <Row>
+                    <Col lg={12} className="px-4">
+                        <h5>Deposit</h5>
+                    </Col>
+                    <Col lg={12} className="">
+                        <div className="cardBox m-1 p-2">
+                            <div className="d-flex justify-content-between p-0" style={{ background: '#FFF' }}>
+                                <div className="mr-1">
+                                    <Form.Control size="lg" style={{ border: "none" }} as="input" type="number" value={depositAmount} onChange={(val) => setDepositAmount(val.target.value)} />
+                                </div>
+                                <div className="py-2">
+                                    <InputGroup.Prepend >
+                                        <InputGroup.Text style={{ background: "#fff", border: 'none' }}>
+                                            <small><strong className="card_stake_text pt-2">
+                                            {cardData.name}
+                                            </strong></small>
+                                            <Badge className="mt-1" style={{ background: '#FFFBEC', color: "#D5A600", marginBottom: 4, cursor:'pointer' }} onClick={()=>{setDepositAmount(lPBalance)}} >MAX</Badge>
+                                        </InputGroup.Text>
+                                    </InputGroup.Prepend>
+                                </div>
+                            </div>
+                        </div>
+                    </Col>
+                </Row>
+                <span className="card_stake_text pt-2">Available: {lPBalance} {cardData.name}</span>
+                <Row className='p-2'>
+                    {!pendingDeposit ?
+                        (<Button className="addMore" size="lg" block disabled={loader} onClick={async () => {
+                            setPendingDeposit(true);
+                            try {
+                                const txHash = await stake(
+                                    cardData.farmContract,
+                                    cardData.pid,
+                                    depositAmount,
+                                    account,
+                                );
+                                setPendingDeposit(false);
+                                setShowBox("withdrawaddmore");
+                
+                            } catch (e) {
+                                console.log(e);
+                                setPendingDeposit(false);
+                                setShowBox("withdrawaddmore")
+                            }
+                        }}
+                        >
+                            Add
+                        </Button>)
+                        :
+                        <Button className="loaderButton" size="lg" block >
+                            <Spinner
+                                as="span"
+                                animation="border"
+                                size="sm"
+                                role="status"
+                                aria-hidden="true"
+                            />{` `}PENDING STAKE...
+                        </Button>
+                    }
+
+                    <Button className="withDrawButton" size="lg" block disabled={loader} onClick={() => { handleCancel('add') }}>
+                        Cancel
+                    </Button>
+                </Row>
+            </Card.Body>}
+            {showBox === 'withdrawcancel' && <Card.Body className="cardBodyColor">
+                <Row>
+                    <Col lg={12} className="px-4">
+                        <h5>Withdraw</h5>
+                    </Col>
+                    <Col lg={12} className="">
+                        <div className="d-flex justify-content-between p-0">
+                            <div className="mr-1">
+                                <Form.Control size="lg" style={{ border: "none" }} type="text" value={stakedBalance.toFixed(2)} disabled  onChange={(val) => setWithdrawAmount(val.target.value)}/>
+                                <div className="text-right h_title">Available: {stakedBalance ? stakedBalance.toFixed(2) : "0.00"}</div>
+                            </div>
+                            <div className="py-2">
+                                <InputGroup.Prepend >
+                                    <InputGroup.Text style={{ background: "#fff", border: 'none' }}>
+                                        <small><strong className="card_stake_text pt-2">
+                                        {cardData.name}
+                                        </strong></small>
+                                    </InputGroup.Text>
+                                </InputGroup.Prepend>
+                            </div>
+                        </div>
+                    </Col>
+                </Row>
+                <h6 className="text-center mt-2">
+                    Withdraw your Stake?
+                </h6>
+                <Row className='p-2'>
+                    {!pendingWithdraw ?
+                        <Button className="addMore" size="lg" block disabled={loader}  onClick={async () => {
+                            setPendingWithdraw(true);
+                            try {
+                                const txHash = await unstake(
+                                    cardData.farmContract,
+                                    cardData.pid,
+                                    account,
+                                );
+                                setPendingWithdraw(false);
+                                setShowBox("withdrawaddmore");
+                                
+                            } catch (e) {
+                                console.log(e);
+                                setPendingWithdraw(false);
+                                setShowBox("withdrawaddmore");
+                            }
+                        }}
+                        >
+                            Yes, I want to Withdraw
+                        </Button>
+                        :
+                        <Button className="loaderButton" size="lg" block >
+                            <Spinner
+                                as="span"
+                                animation="border"
+                                size="sm"
+                                role="status"
+                                aria-hidden="true"
+                            />{` `}PENDING WITHDRAWAL...
+                        </Button>
+                    }
+
+                    <Button className="withDrawButton" size="lg" block disabled={loader} onClick={() => {handleCancel("withdraw") }}>
+                        Cancel
+                    </Button>
+                </Row>
+            </Card.Body>}
+            {showBox === 'harvestcancel' && <Card.Body className="cardBodyColor">
+                <Row>
+                    <Col lg={12} className="px-4">
+                        <h5>Earned Amount</h5>
+                    </Col>
+                    <Col lg={12}>
+                        <div className="cardBox m-1 p-2">
+                            <Row>
+                                <Col lg={12} className="">
+                                    <div className="d-flex justify-content-between p-0">
+                                        <div>
+                                            <Form.Control size="lg" style={{ border: "none" }} type="text" value={earnedBalance.toFixed(3)} disabled/>
+                                        </div>
+                                        <div className="py-2">
+                                            <InputGroup.Prepend >
+                                                <InputGroup.Text style={{ background: "#fff", border: 'none' }}>
+                                                    <small><strong className="card_stake_text pt-2">
+                                                        xKAWA
+                                                    </strong></small>
+                                                </InputGroup.Text>
+                                            </InputGroup.Prepend>
+                                        </div>
+                                    </div>
+                                </Col>
+                               
+                            </Row>
+                        </div>
+                    </Col>
+                </Row>
+                <Row className='p-2'>
+                    {!pendingHarvest ?
+                        <Button className="addMore" size="lg" block disabled={loader} onClick={async () => {
+                            setPendingHarvest(true);
+                            try {
+                                const txHash = await harvest(
+                                    cardData.farmContract,
+                                    cardData.pid,
+                                    account,
+                                );
+                                setPendingHarvest(false);
+                                setShowBox("withdrawaddmore");
+                            } catch (e) {
+                                console.log(e);
+                                setPendingHarvest(false);
+                                setShowBox("withdrawaddmore");
+                            }
+                        }}>
+                            Harvest
+                        </Button>
+                        :
+                        <Button className="loaderButton" size="lg" block >
+                            <Spinner
+                                as="span"
+                                animation="border"
+                                size="sm"
+                                role="status"
+                                aria-hidden="true"
+                            />{` `}PENDING HARVEST...
+                        </Button>
+                    }
+
+                    <Button className="withDrawButton" size="lg" block disabled={loader} onClick={() => { handleCancel("harvest") }}>
+                        Cancel
+                    </Button>
+                </Row>
+            </Card.Body>}
+        </Card>
     )
 }
 
