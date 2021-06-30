@@ -73,7 +73,7 @@ const SignIn = props => {
                     </Row>
                     <Row>
                         <Col lg={12} className="text-center">
-                            <span className="text-center">Farm <span style={{ color: "#DE4949" }}>$xKAWA</span> by staking the most popular community tokens such as SHIB, KISHU, AKITA and more!</span>
+                            <span className="text-center">Farm <span style={{ color: "#FF2E59" }}>$xKAWA</span> by staking the most popular community tokens such as SHIB, KISHU, AKITA and more!</span>
                         </Col>
                     </Row>
                     <Row>
