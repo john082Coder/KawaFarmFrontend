@@ -31,7 +31,7 @@ export const supportedPools = [
       4: '0x073f6BF68De1f157508aa00baB5F6B2f544382bE'
     },
     farmAddresses: {
-      4: '0x80dECbC4A8c602E75E05507eb60951d52189aBC4'
+      4: '0x0bD8C3b360B149F6DD01790E301A70B520C1ce0e'
     },
     tokenAddresses: {
       42: '0x175D9b7BEf31cC753D1d94Ee70d90F23aBF94070',
@@ -53,7 +53,7 @@ export const supportedPools = [
       4: '0x37d3C98483745bc273B813c16922D76020C40BBA'
     },
     farmAddresses: {
-      4: '0x82c7F39a766ec449418b588d5C1C376085888f34'
+      4: '0xAA21593EA56b14Ed17d162386d83a23C3Db451B4'
     },
     tokenAddresses: {
       42: '0x175D9b7BEf31cC753D1d94Ee70d90F23aBF94070',
@@ -74,7 +74,7 @@ export const supportedPools = [
       4: '0x020b2db78e5603271f623C9A6bF73A3758293319'
     },
     farmAddresses: {
-      4: '0x71A8C8f0B70eb7a95c4E21b2147C9Cab1D18eaB8'
+      4: '0xe80B23a7d300edD39f773A1B8f2d0597F3E0C415'
     },
     tokenAddresses: {
       42: '0x175D9b7BEf31cC753D1d94Ee70d90F23aBF94070',
@@ -121,7 +121,7 @@ export const supportedPools = [
       4: '0xa3a5F9dC5FD2b7170Aaac1d749d609a3783bf383',
     },
     farmAddresses: {
-      4: '0x6db0f9fc52e1042f81f238c6ac61059cfe0279fc'
+      4: '0x6013E1Fe1C689D43353B877A7d282c6BB08B0B9f'
     },
     name: 'AKITA',
     symbol: 'AKITA',
