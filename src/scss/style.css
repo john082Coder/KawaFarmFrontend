@@ -29,6 +29,10 @@ h1 {
   color: white !important;
 }
 
+.btn {
+  border-radius: 8px;
+}
+
 .btn_white {
   color: #141132;
   background-color: white;
