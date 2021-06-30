@@ -6,3 +6,35 @@
 :root {
   font-family: "Visby" !important;
  }
+ .farm-title
+ {
+
+    font-style: normal;
+font-weight: normal;
+font-size: 72px;
+line-height: 125%;
+color: #310707;
+
+ }
+ .wallet-connect-button {
+  background: #FEF9FA;
+  border: 1px solid #D5D5D5;
+  box-sizing: border-box;
+  border-radius: 12px;
+ }
+ .wallet-set-up-link-box {
+  background: #FCF2EF;
+  box-shadow: 0px -1px 0px #F9E5DF;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  margin-top: 0px !important;
+ }
+ .farm-top-title {
+  font-weight: 800;
+  font-size: 40px;
+  line-height: 159%;
+ }

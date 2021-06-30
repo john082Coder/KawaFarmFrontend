@@ -600,6 +600,10 @@ color: #FF2E59;
   background: rgba(255, 255, 255, 0.9);
   box-shadow: 0px 0px 88px rgba(138, 57, 69, 0.1);
   border-radius: 16px;
+ border-bottom-left-radius: 0px !important;
+ border-bottom-right-radius: 0px !important;
+  margin-bottom: 0px !important;
+  
 }
 .walletsetup{
   font-family: Visby Round CF;

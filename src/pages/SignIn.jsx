@@ -9,6 +9,7 @@ import MetamaskDark from "../assets/metamask-dark.svg";
 import WConnect from "../assets/wallet-connect.svg";
 import WConnectDark from "../assets/wallet-Connect-dark.svg";
 import { useWallet } from 'use-wallet';
+import Footer from '../components/footer'
 const SignIn = props => {
 
     const history=useHistory();
@@ -58,7 +59,7 @@ const SignIn = props => {
 
     return (
         <Container fluid className="main_layout loginGradiant">
-            <Row style={{ zIndex: '10000', opacity:1 }}>
+            <Row style={{ zIndex: '10000', opacity:1 }} >
                 <Col lg={{ span: 4, offset: 4 }}  className="p-4 d-flex flex-column justify-content-center">
                     <Row style={{marginRight:0}}>
                         <Col lg={{offset:5}} sm={{span:0}} >
@@ -67,7 +68,7 @@ const SignIn = props => {
                     </Row>
                     <Row>
                         <Col lg={12}>
-                            <h1 className="text-center">KawaFarm</h1>
+                            <h1 className="text-center farm-title">KawaFarm</h1>
                         </Col>
                     </Row>
                     <Row>
@@ -85,57 +86,42 @@ const SignIn = props => {
                                 </Row>
                                 <Button
                                     variant="light"
-                                    className="mx-md-3 shadow d-flex align-items-center w-fill-available my-3 bg_harvest border-0"
+                                    className="mx-md-3 wallet-connect-button d-flex align-items-center w-fill-available my-3 bg_harvest "
                                     //onClick={()=>history.push('/dashboard')}
                                      onClick={() => {
                                         onChangeWallet('metamask');
                                         setModalShow(false);
                                      }}
                                 >
-                                    <h3 className="text_app mb-0 ml-3 text-left w-fill-available">Connect to Metamask</h3>
-                                    <img src={props.themeClass ? Metamask : MetamaskDark} alt=""/>
+                                    <span className="text_app mb-0 ml-3 text-left w-fill-available">Connect to Metamask</span>
+                                    <img src={ Metamask } alt=""/>
 
                                 </Button>
                                 <Button
                                     variant="light"
-                                    className="mx-md-3 shadow d-flex align-items-center w-fill-available mb-5 bg_harvest border-0"
+                                    className="mx-3 mb-5 wallet-connect-button d-flex align-items-center w-fill-available  bg_harvest"
                                     onClick={()=>history.push('/dashboard')}
                                     // onClick={() => {
                                     //     props.onChangeWallet('walletconnect');
                                     //     props.onHide();
                                     // }}
                                 >
-                                    <h3 className="text_app mb-0 ml-3 text-left w-fill-available">Use Wallet Connect</h3>
-                                    <img src={props.themeClass ? WConnect : WConnectDark} alt=""/>
+                                    <span className="text_app mb-0 ml-3 text-left w-fill-available">Use Wallet Connect</span>
+                                    <img src={ WConnect } alt=""/>
                                 </Button>
-                                <p className="walletsetup text-center">Don't have a wallet set up?</p>
+                               
                             </div>
+                            <div className="wallet-set-up-link-box mx-4">
+                                    <p className="walletsetup text-center">Don't have a wallet set up?</p>
+                                </div>
 
                         </Col>
                     </Row>
                 </Col>
             </Row>
-
-
-            <hr className="mb-0" />
-            <div>
-                <footer className="footer">
-                    <Container fluid className="p-1">
-                        <Row className="d-flex flex-column" style={{ color: "#AB6D77", margin: '0px' }}>
-                            <Col lg={{ span: 4, order: "first" }} sm={{ order: 'second' }} xs={{ span: 12, order: 'second' }} className="formlabel footerClass">
-                                <span className="px-1">Contact Us</span>
-                                <span className="px-2">FAQ</span>
-                                <span className="px-2">Bussiness Enquiries</span>
-                            </Col>
-                            <Col lg={{ span: 3, offset: 2, order: "second" }} sm={{ span: 12, order: 'first' }} xs={{ span: 12, order: 'first' }} className="formlabel footerClass">2021 Kawakami Inu™</Col>
-                            <Col lg={{ span: 3, order: "last" }} sm={{ span: 12, order: 'last' }} xs={{ span: 12, order: 'last' }} className="formlabel footerClass">
-                                <span className="px-1">$KAWA</span>
-                                <span className="px-1">Join Community</span>
-                            </Col>
-                        </Row>
-                    </Container>
-                </footer>
-            </div>
+ 
+                   
+              <Footer/>
         </Container>
 
     );

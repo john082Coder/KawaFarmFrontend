@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { Container, Row, Col, Button, Badge, Card, Image, Form, Modal, Nav, Navbar, NavDropdown, InputGroup, OverlayTrigger, Popover } from "react-bootstrap";
 import { useHistory } from 'react-router';
 import { useWallet } from 'use-wallet';
-
+import { bnToDec } from '../utils';
 import Logo from "../assets/dogAvtar.png";
 import LoginIcon from "../assets/loginIcon.svg";
 import Bell from "../assets/bell.svg";
@@ -19,8 +19,10 @@ import akitaCoin from "../assets/akitaCoin.svg";
 import { formatAddress } from "../utils";
 import CoinCard from "../components/coinCard";
 import FarmCard from "../components/farmCard";
+import Footer from '../components/footer'
+import BigNumber from 'bignumber.js'
 const DashBoard = () => {
-    const { account, connect, reset, status } = useWallet();
+    const { account, connect, reset, status, balance, connector, ethereum, chainId } = useWallet();
     const dummyData = [
         {
             coinTitle: 'Kawakami Inu Pool',
@@ -90,6 +92,7 @@ const DashBoard = () => {
         else {
             history.push('/');
         }
+        console.log("111=",chainId)
       }, [account]);
 
     const onFormSubmit = () => {
@@ -124,7 +127,7 @@ const DashBoard = () => {
                             <Form.Group className="headerdropdown">
                                 <InputGroup className="headerdropdown" style={{ background: '#FFF', border: '1px solid #FCDFE9' }}>
                                     <InputGroup.Prepend className="prePended">
-                                        <InputGroup.Text id="inputGroupPrepend" style={{ color: '#82172D', borderTopLeftRadius: 8 }}>0.8526 ETH</InputGroup.Text>
+                                        <InputGroup.Text id="inputGroupPrepend" style={{ color: '#82172D', borderTopLeftRadius: 8 }}>{bnToDec(new BigNumber(balance))} ETH</InputGroup.Text>
                                     </InputGroup.Prepend>
                                     <NavDropdown
                                         className="header-pedding"
@@ -141,7 +144,7 @@ const DashBoard = () => {
                                                 borderRadius: '8px', border: '1px Solid #E5E5E5'
                                             }}>
                                                 <NavDropdown.Item href="#">{account?formatAddress(account):""}<img src={roundBallIcon} alt="" /></NavDropdown.Item>
-                                                <small><NavDropdown.Item href="#" style={{ color: '#109BDE' }}>VIEW IN EXPLORER <img src={openIcon} style={{ marginBottom: 4, marginLeft: 4 }} alt=""/></NavDropdown.Item></small>
+                                                <small ><NavDropdown.Item href={"https://"+(chainId==4?"rinkeby":"mainnet")+".etherscan.io/address/" + account} target="_blank" style={{ color: '#109BDE' }}>VIEW IN EXPLORER <img src={openIcon} style={{ marginBottom: 4, marginLeft: 4 }} alt=""/></NavDropdown.Item></small>
                                             </div>
                                         </div>
                                         <div style={{ margin: 8 }}>
@@ -189,13 +192,13 @@ const DashBoard = () => {
             <Container style={{ paddingTop: '100px' }}>
                 <Row>
                     <Col xl="12" className="p-2 pt-4">
-                        <h2 className="font-weight-bold" style={{ fontFamily: 'Visby' }}>Stake several tokens to earn xKAWA</h2>
+                        <div className="font-weight-bold farm-top-title" style={{ fontFamily: 'Visby' }}>Stake one or more tokens to earn xKAWA</div>
                         <hr />
                     </Col>
                 </Row>
                 <Row className="pb-2">
                     <Col>
-                        Showing {dummyData.length} staking pools
+                    Showing <span style={{ 'font-size': '18px' }}>5 staking pools</span>
                     </Col>
                 </Row>
                 <Row className="">
@@ -207,7 +210,8 @@ const DashBoard = () => {
                     onChangeWallet={onChangeWallet}
                     account={account}
               />}
-                    <Col lg={4} sm={12} md={6} className= "mt-2">
+              
+                    <div md="10" lg="6" xl="4" className= "mt-2 ml-0">
                         <Card style={{ width: '22rem' }} className="stake_card">
                             <Card.Body style={{
                                 display: 'flex',
@@ -229,7 +233,7 @@ const DashBoard = () => {
                                 </div>
                             </Card.Body>
                         </Card>
-                    </Col>
+                    </div>
                 </Row>
                 <Modal show={show} onHide={handleClose} animation={false} style={{ borderRadius: '24px' }}>
                     <Modal.Body className="p-0">
@@ -304,26 +308,11 @@ const DashBoard = () => {
                     </Modal.Body>
                 </Modal>
             </Container>
-            <hr className="mb-0" />
+        
             
-            <div>
-                <footer className="footer">
-                    <Container fluid className="p-1"> 
-                        <Row className="d-flex flex-column" style={{ color: "#AB6D77", margin: '0px' }}>
-                            <Col lg={{ span: 4, order: "first" }} sm={{ order: 'second' }} xs={{ span: 12, order: 'second' }} className="formlabel footerClass">
-                                <span className="px-1">Contact Us</span>
-                                <span className="px-2">FAQ</span>
-                                <span className="px-2">Bussiness Enquiries</span>
-                            </Col>
-                            <Col lg={{ span: 3, offset: 2, order: "second" }} sm={{ span: 12, order: 'first' }} xs={{ span: 12, order: 'first' }} className="formlabel footerClass">2021 Kawakami Inu™</Col>
-                            <Col lg={{ span: 3, order: "last" }} sm={{ span: 12, order: 'last' }} xs={{ span: 12, order: 'last' }} className="formlabel footerClass">
-                                <span className="px-1">$KAWA</span>
-                                <span className="px-1">Join Community</span>
-                            </Col>
-                        </Row>
-                    </Container>
-                </footer>
-            </div>
+                   <Footer/>
+
+            
         </Container>
     );
 };
