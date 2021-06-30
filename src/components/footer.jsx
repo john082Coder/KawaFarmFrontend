@@ -10,7 +10,7 @@ import Logo from "../assets/footer_logo.png";
 const Footer = (props) => {
   return (
     <>
-     <Row fluid className="d-flex justify-content-between p-2 mt-4" style={{ color: "#AB6D77", margin: '0px' }}>
+     <Row fluid className="d-flex justify-content-between p-2 mt-4" style={{ color: "#AB6D77", margin: '0px',     borderTop: '1px solid rgba(189, 28, 59, 0.1)' }}>
                         
                         <Col  className="formlabel footerClass text-center">
                             <span className="px-1">Contact Us</span>
