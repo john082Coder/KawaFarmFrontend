@@ -729,7 +729,7 @@ const CoinCard = (props) => {
                                 <Col lg={12} className="">
                                     <div className="d-flex justify-content-between p-0">
                                         <div>
-                                            <Form.Control size="lg" style={{ border: "none" }} type="text" value={earnedBalance.toFixed(3)} disabled/>
+                                            <Form.Control size="lg" style={{ border: "none" }} type="text" value={earnedBalance} disabled/>
                                         </div>
                                         <div className="py-2">
                                             <InputGroup.Prepend >
