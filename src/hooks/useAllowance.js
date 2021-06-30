@@ -7,11 +7,12 @@ import { useWallet } from 'use-wallet';
 import { getAllowance } from '../utils/erc20';
 import { getFarmContract } from '../contracts/utils';
 
-const useAllowance = (lpContract) => {
+const useAllowance = (lpContract, farmContract=null) => {
   const [allowance, setAllowance] = useState(new BigNumber(0));
   const { account } = useWallet();
   const payr = usePayr();
-  const farmContract = getFarmContract(payr);
+  if(farmContract === null)
+    farmContract = getFarmContract(payr);
 
   const fetchAllowance = useCallback(async () => {
     const allowance = await getAllowance(
@@ -29,7 +30,7 @@ const useAllowance = (lpContract) => {
     let refreshInterval = setInterval(fetchAllowance, 10000);
     return () => clearInterval(refreshInterval);
   }, [account, farmContract, lpContract]);
-
+  console.log("allowance=", farmContract.options.address);
   return allowance;
 }
 
