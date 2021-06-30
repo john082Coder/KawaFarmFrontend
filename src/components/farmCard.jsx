@@ -661,8 +661,8 @@ const CoinCard = (props) => {
                     <Col lg={12} className="">
                         <div className="d-flex justify-content-between p-0">
                             <div className="mr-1">
-                                <Form.Control size="lg" style={{ border: "none" }} type="text" value={stakedBalance.toFixed(2)} disabled  onChange={(val) => setWithdrawAmount(val.target.value)}/>
-                                <div className="text-right h_title">Available: {stakedBalance ? stakedBalance.toFixed(2) : "0.00"}</div>
+                                <Form.Control size="lg" style={{ border: "none" }} type="text" value={stakedBalance} disabled  onChange={(val) => setWithdrawAmount(val.target.value)}/>
+                                <div className="text-right h_title">Available: {stakedBalance ? stakedBalance : "0.00"}</div>
                             </div>
                             <div className="py-2">
                                 <InputGroup.Prepend >
