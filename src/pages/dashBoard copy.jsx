@@ -406,7 +406,7 @@ const DashBoard = () => {
                                     <Row>
                                         <Col>
                                             <div >
-                                                <Button className="withDrawButton" variant="outline-success" size="md" onClick={handleShow}>
+                                                <Button className="getInTouchButton" variant="outline-success" size="md" onClick={handleShow}>
                                                     GET IN TOUCH
                                                 </Button>
                                             </div>

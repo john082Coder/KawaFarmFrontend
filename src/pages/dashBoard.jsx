@@ -189,7 +189,7 @@ const DashBoard = () => {
                     </Navbar.Collapse> 
                 </Navbar>
             </Container> 
-            <Container style={{ paddingTop: '100px' }}>
+            <Container className="main-dash-container" style={{ paddingTop: '100px', maxWidth:'1280px' }}>
                 <Row>
                     <Col xl="12" className="p-2 pt-4">
                         <div className="font-weight-bold farm-top-title" style={{ fontFamily: 'Visby' }}>Stake one or more tokens to earn xKAWA</div>
@@ -224,7 +224,7 @@ const DashBoard = () => {
                                     <Row>
                                         <Col>
                                             <div >
-                                                <Button className="withDrawButton" variant="outline-success" size="md" onClick={handleShow}>
+                                                <Button className="getInTouchButton" variant="outline-success" size="md" onClick={handleShow}>
                                                     GET IN TOUCH
                                                 </Button>
                                             </div>
