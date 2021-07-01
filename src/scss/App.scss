@@ -12,6 +12,21 @@
   line-height: 125%;
   color: #310707;
 }
+
+.intro-text {
+  span {
+    font-size: 16px;
+    line-height: 24px;
+    font-family: "Visby 400";
+    color: #4e2b33;
+    font-weight: 400;
+    strong {
+      font-family: "Visby 800";
+      font-weight: 400;
+    }
+  }
+}
+
 .wallet-connect-button {
   background: #fef9fa;
   border: 1px solid #d5d5d5;
@@ -24,6 +39,10 @@
     width: 32px;
     height: 32px;
   }
+  @media screen and (max-width: 992px) {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
 }
 .wallet-set-up-link-box {
   background: #fcf2ef;
@@ -35,18 +54,48 @@
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
   margin-top: 0px !important;
+  a,
+  a:link,
+  a:visited {
+    text-decoration: none;
+    color: rgb(171, 109, 119);
+  }
 }
 .farm-top-title {
   font-family: "Visby 800" !important;
   font-weight: 400 !important;
-  font-size: 40px;
-  line-height: 159%;
+  line-height: 1.2;
   letter-spacing: -0.03em;
+  font-size: 32px;
+  @media screen and (min-width: 992px) {
+    line-height: 159%;
+    font-size: 40px;
+  }
+}
+
+.kawa-footer {
+  a,
+  a:link,
+  a:visited {
+    text-decoration: none;
+    color: rgb(171, 109, 119);
+  }
+  @media screen and (max-width: 992px) {
+    margin-bottom: 1em;
+    min-height: 200px;
+  }
 }
 
 .stake-card-container {
-  width: 100%;
-  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  .stake-card {
+    width: 100% !important;
+  }
+  @media screen and (min-width: 992px) {
+    flex-direction: row;
+    display: inline-flex;
+  }
 }
 
 .stake_card {
@@ -66,6 +115,9 @@
   }
   .card-header {
     border-bottom: 1px solid rgba(224, 199, 200, 0.5);
+  }
+  .card-body {
+    padding-bottom: 0 !important;
   }
   .token-info {
     padding-top: 12px !important;

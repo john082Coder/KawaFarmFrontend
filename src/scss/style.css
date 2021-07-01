@@ -594,13 +594,15 @@ h1 {
   width: 22rem !important;
   max-width: 22rem !important;
   border-radius: 25px;
-  height: 600px;
-  min-height: 550px !important;
+  /* height: 600px; */
+  height: auto;
+  /* min-height: 550px !important; */
 }
 
 @media only screen and (max-width: 600px) {
   .stake_card {
-    height: 550px;
+    /* height: 550px; */
+    height: auto;
     width: 19rem !important;
   }
 }
