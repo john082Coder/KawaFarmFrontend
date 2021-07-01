@@ -325,14 +325,14 @@ const CoinCard = (props) => {
     <Card style={{ width: '22rem' }} className="stake_card p-0 m-0 mr-2 mt-2">
             {headerMessage && <Card.Header style={{ height: '24px', padding: 0, margin: 0, textAlign: "center" }}><small style={{ marginInline: 'auto', color: "#136F1C" }}>{headerMessage}</small></Card.Header>}
             <Card.Header style={{ backgroundColor: "#FFF", borderTopRightRadius: '25px', borderTopLeftRadius: '25px' }}>
-                <div className="d-flex justify-content-around p-4">
+                <div className="d-flex justify-content-start pt-3 pb-0 pl-3 pr-2">
                     <div><Image src={cardData.icon} roundedCircle style={{ maxWidth: '50px', maxHeight: '50px' }} /></div>
-                    <div>
+                    <div style={{paddingLeft:'12px'}}>
                         <h5 className="m-0">{cardData.poolTitle}</h5>
                         <small>{cardData.name}-xKAWA</small>
                     </div>
                 </div>
-                <div className="d-flex justify-content-around p-4">
+                <div className="d-flex justify-content-between pl-3 pr-3 pb-3 token-info">
                     <div>
                         <h6 className='mb-0' style={{ color: '#977D83' }}>Weight</h6>
                         <strong>100$</strong>
@@ -354,7 +354,7 @@ const CoinCard = (props) => {
                         <Col lg={12}>
                             <div className="d-flex justify-content-between p-0">
                                 <div>
-                                    <small className="card_stake_text"><strong style={{ paddingLeft: 16 }}>STAKED</strong></small>
+                                    <small className="card_stake_text"><strong style={{ paddingLeft: 12 }}>STAKED</strong></small>
                                     <Form.Control size="lg" style={{ border: "none" }} type="text" value={staked} disabled />
                                 </div>
                                 <div className="py-2">
@@ -369,9 +369,9 @@ const CoinCard = (props) => {
                             </div>
                         </Col>
                         <Col lg={12}>
-                            <div className="d-flex justify-content-between p-0">
+                            <div className="d-flex justify-content-between p-0"  style={{marginTop: 12}}>
                                 <div>
-                                    <small className="card_stake_text"><strong style={{ paddingLeft: 16 }}>xKAWA EARNED</strong></small>
+                                    <small className="card_stake_text"><strong style={{ paddingLeft: 12 }}>xKAWA EARNED</strong></small>
                                     <Form.Control size="lg" style={{ border: "none" }} type="text" value={earned} disabled />
                                 </div>
                                 <div className="py-2">
@@ -405,7 +405,7 @@ const CoinCard = (props) => {
                                     Approving...</strong>
                                 </Button>
                             ): (
-                                <Button variant="light" style={{ border: '1px solid #E6E5E5' }} onClick={handleApprove} block><strong>Approve Contract</strong></Button>
+                                <Button variant="light" style={{ border: '1px solid #E6E5E5', backgroundColor:'none', textTransform: 'uppercase', letterSpacing:'0.05em', fontSize:'13px' }} onClick={handleApprove} block><strong>Approve Contract</strong></Button>
                             )}
                             </>
                         ) : (    

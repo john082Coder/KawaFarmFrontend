@@ -1,19 +1,54 @@
 body {
   margin: 0;
-  font-family: Visby, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: Visby, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 @font-face {
   font-family: "Visby";
   src: local("Visby"),
-   url("./fonts/Visby/Webfont/VisbyRoundCF-Bold.woff") format("woff");
+    url("./fonts/Visby/Webfont/VisbyRoundCF-Bold.woff") format("woff");
   font-weight: bold;
-  }
+}
+
+@font-face {
+  font-family: "Visby 800";
+  src: local("VisbyRoundCF-ExtraBold"),
+    url("./fonts/Visby/Webfont/VisbyRoundCF-ExtraBold.woff") format("woff");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Visby 700";
+  src: local("VisbyRoundCF-Bold"),
+    url("./fonts/Visby/Webfont/VisbyRoundCF-Bold.woff") format("woff");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Visby 600";
+  src: local("VisbyRoundCF-DemiBold"),
+    url("./fonts/Visby/Webfont/VisbyRoundCF-DemiBold.woff") format("woff");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Visby 500";
+  src: local("VisbyRoundCF-Medium"),
+    url("./fonts/Visby/Webfont/VisbyRoundCF-Medium.woff") format("woff");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Visby 400";
+  src: local("VisbyRoundCF-Regular"),
+    url("./fonts/Visby/Webfont/VisbyRoundCF-Regular.woff") format("woff");
+  font-weight: 400;
+}

@@ -16,6 +16,7 @@ import kawaCoin from "../assets/kawaCoin.svg";
 import shibaCoin from "../assets/shibaCoin.svg";
 import kishuCoin from "../assets/kishuCoin.svg";
 import akitaCoin from "../assets/akitaCoin.svg";
+import logoKawafarm from "../assets/logo-kawafarm.svg";
 import { formatAddress } from "../utils";
 import CoinCard from "../components/coinCard";
 import FarmCard from "../components/farmCard";
@@ -113,16 +114,16 @@ const DashBoard = () => {
                         borderBottom: "2px solid #F7FBFD",
                     }}
                 >
-                    <Navbar.Brand style={{ color: "#16507B" }}>
+                    <Navbar.Brand>
                         <Image
                             src={Logo}
                             roundedCircle
-                            style={{ maxWidth: "36px", maxHeight: "36px", marginRight: 8 }}
+                            style={{ maxWidth: "36px", maxHeight: "36px", marginRight: '12px' }}
                         />
-                        KawaFarm
+                        <img alt="KawaFarm" src={logoKawafarm} className="svg-kawa" />
                     </Navbar.Brand>
                     
-                    <Navbar.Collapse id="basic-navbar-nav" style={{ marginRigt: "24px" }}>
+                    <Navbar.Collapse id="basic-navbar-nav" style={{ marginRight: "24px" }}>
                         <Nav className="ml-auto" style={{ fontSize: "14px" }}>
                             <Form.Group className="headerdropdown">
                                 <InputGroup className="headerdropdown" style={{ background: '#FFF', border: '1px solid #FCDFE9' }}>
@@ -138,17 +139,17 @@ const DashBoard = () => {
                                         <div style={{
                                             borderRadius: '8px', background: '#FFF !important', minWidth: '221px'
                                         }}>
-                                            <p style={{ padding: 8 }}>Connected with MetaMask</p>
+                                            <p style={{ padding:'0 12px', fontFamily:'Visby 400', fontSize:'12px' }}>Connected with MetaMask</p>
                                             <div style={{
                                                 margin: 8,
-                                                borderRadius: '8px', border: '1px Solid #E5E5E5'
+                                                borderRadius: '8px', border: '1px Solid #E5E5E5', padding: '4px 0'
                                             }}>
-                                                <NavDropdown.Item href="#">{account?formatAddress(account):""}<img src={roundBallIcon} alt="" /></NavDropdown.Item>
-                                                <small ><NavDropdown.Item href={"https://"+(chainId==4?"rinkeby":"mainnet")+".etherscan.io/address/" + account} target="_blank" style={{ color: '#109BDE' }}>VIEW IN EXPLORER <img src={openIcon} style={{ marginBottom: 4, marginLeft: 4 }} alt=""/></NavDropdown.Item></small>
+                                                <NavDropdown.Item href="#" style={{fontSize:'14px', color:'#82172D', marginBottom:0, paddingBottom:0, paddingLeft:'12px'}}>{account?formatAddress(account):""}<img src={roundBallIcon} alt="" style={{marginLeft:'8px'}} /></NavDropdown.Item>
+                                                <small ><NavDropdown.Item href={"https://"+(chainId==4?"rinkeby":"mainnet")+".etherscan.io/address/" + account} target="_blank" style={{ color: '#109BDE', fontSize: '12px', paddingTop:0, paddingLeft:'12px' }}>VIEW IN EXPLORER <img src={openIcon} style={{ marginBottom: 4, marginLeft: 4 }} alt=""/></NavDropdown.Item></small>
                                             </div>
                                         </div>
                                         <div style={{ margin: 8 }}>
-                                            <Button style={{ background: 'rgba(251, 0, 0, 0.1)', border: 'none', color: '#903434' }} onClick={onDisconnectWallet} variant="outline-success" size="lg" block >
+                                            <Button style={{ background: 'rgba(251, 0, 0, 0.1)', border: 'none', color: '#903434', fontSize:'12px', letterSpacing:'0.03em' }} onClick={onDisconnectWallet} variant="outline-success" size="lg" block >
                                                 DISCONNECT
                                             </Button>
                                         </div>
@@ -157,7 +158,7 @@ const DashBoard = () => {
                                 </InputGroup>
                             </Form.Group>
                          
-                            <Nav.Link className="header-pedding" href="#">
+                            <Nav.Link className="header-pedding" href="#" style={{marginLeft:'12px'}}>
                                
                                 <OverlayTrigger
                                     trigger="click"
@@ -189,9 +190,9 @@ const DashBoard = () => {
                     </Navbar.Collapse> 
                 </Navbar>
             </Container> 
-            <Container className="main-dash-container" style={{ paddingTop: '100px', maxWidth:'1280px' }}>
+            <Container className="main-dash-container" style={{ paddingTop: '100px', maxWidth:'1140px' }}>
                 <Row>
-                    <Col xl="12" className="p-2 pt-4">
+                    <Col xl="12" className="p-2" style={{paddingTop: 0}}>
                         <div className="font-weight-bold farm-top-title" style={{ fontFamily: 'Visby' }}>Stake one or more tokens to earn xKAWA</div>
                         <hr />
                     </Col>
@@ -211,7 +212,7 @@ const DashBoard = () => {
                     account={account}
               />}
               
-                    <div md="10" lg="6" xl="4" className= "mt-2 ml-0">
+                    <div md="10" lg="6" xl="4" className= "mt-2 ml-0" class="stake-card-container">
                         <Card style={{ width: '22rem' }} className="stake_card">
                             <Card.Body style={{
                                 display: 'flex',

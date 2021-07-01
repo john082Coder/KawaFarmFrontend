@@ -17,6 +17,10 @@ h1 {
   background-color: #25224e;
 }
 
+hr {
+  border-top: 1px solid rgba(189, 28, 59, 0.2);
+}
+
 .text_white {
   color: white;
   &:hover {
@@ -517,7 +521,7 @@ h1 {
   height: 600px;
   min-height: 550px !important;
   @media only screen and (max-width: 600px) {
-    height: 650px;
+    height: 550px;
     width: 19rem !important;
   }
 }
@@ -562,6 +566,7 @@ h1 {
 }
 .cardBodyColor {
   // background-color: #FAFAFA;
+  // background-color: #fffaf9;
 }
 
 .getInTouchButton {
@@ -633,6 +638,17 @@ h1 {
     padding-bottom: 0 !important;
   }
 }
+
+.navbar-brand {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.navbar-brand .svg-kawa {
+  max-width: 105px;
+  margin: 0;
+}
+
 .walletsetup {
   font-family: "Visby", sans-serif;
   font-style: normal;
@@ -656,6 +672,11 @@ p.walletsetup {
 .headerdropdown {
   background: #fcdfe9;
   border-radius: 8px;
+  margin-bottom: 0;
+  .input-group-text {
+    background-color: #fcdfe9;
+    border: 0 none;
+  }
 }
 .dropDownMenuBox {
   width: 221px;
