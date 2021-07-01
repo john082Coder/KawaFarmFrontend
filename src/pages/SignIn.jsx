@@ -113,7 +113,7 @@ const SignIn = props => {
                                
                             </div>
                             <div className="wallet-set-up-link-box mx-4">
-                                    <p className="walletsetup text-center">Don't have a wallet set up?</p>
+                                    <p className="walletsetup text-center"><a href="https://metamask.io/faqs" target="_blank" rel="noreferrer">Don't have a wallet set up?</a></p>
                                 </div>
 
                         </Col>

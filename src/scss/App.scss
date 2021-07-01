@@ -35,6 +35,11 @@
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
   margin-top: 0px !important;
+  a, a:link, a:visited {
+    
+    text-decoration: none;
+    color: rgb(171, 109, 119);
+  }
 }
 .farm-top-title {
   font-family: "Visby 800" !important;
@@ -84,5 +89,12 @@
         letter-spacing: -0.02em;
       }
     }
+  }
+}
+.kawa-footer {
+  a, a:link, a:visited {
+    
+    text-decoration: none;
+    color: rgb(171, 109, 119);
   }
 }

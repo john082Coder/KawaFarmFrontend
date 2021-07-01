@@ -698,7 +698,7 @@ h1 {
 
 @media only screen and (max-width: 600px) {
   .footerClass {
-    text-align: center;
+    text-align: center; 
   }
 }
 
@@ -869,4 +869,9 @@ h6 {
 }
 /*# sourceMappingURL=style.css.map */
 .kawa-footer {
+  a, a:link, a:visited {
+    color: #FFFAFA;
+    text-decoration: none;
+    background-color: #778899;
+  }
 }
