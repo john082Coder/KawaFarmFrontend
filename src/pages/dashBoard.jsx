@@ -190,7 +190,7 @@ const DashBoard = () => {
                     </Navbar.Collapse> 
                 </Navbar>
             </Container> 
-            <Container className="main-dash-container" style={{ paddingTop: '100px', maxWidth:'1140px' }}>
+            <Container className="main-dash-container" style={{maxWidth:'1140px' }}>
                 <Row>
                     <Col xl="12" className="p-2" style={{paddingTop: 0}}>
                         <div className="font-weight-bold farm-top-title" style={{ fontFamily: 'Visby' }}>Stake one or more tokens to earn xKAWA</div>

@@ -417,26 +417,26 @@ const CoinCard = (props) => {
                             )}       
                     </Col>
                 </Row>
-                <div className="px-4 pt-4">
+                <div className="px-4 pt-4 stake-info">
                     <Row>
-                        <Col lg={6} className="text-left">
+                        <Col sm={6} className="text-left">
                             <small className="card_stake_text color-gray">
                                 TOTAL VALUE
                             </small>
                         </Col>
-                        <Col lg={6} className="text-left">
+                        <Col sm={6} className="text-left">
                             <small className="card_stake_text color-gray">
                                 MY STAKE
                             </small>
                         </Col>
                     </Row>
                     <Row>
-                        <Col lg={6} className="text-left">
+                        <Col sm={6} className="text-left">
                             <small className="card_stake_text  ibm-plex color-gray">
                                 {totalLpValue} {cardData.name}
                             </small>
                         </Col>
-                        <Col lg={6} className="text-left">
+                        <Col sm={6} className="text-left">
                             <small className="card_stake_text ibm-plex color-gray">
                                 {staked} {cardData.name}
                             </small>

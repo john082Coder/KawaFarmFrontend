@@ -31,6 +31,13 @@ h1 {
   min-height: 100vh;
 }
 
+.main-dash-container {
+  padding-top: 60px;
+  @media screen and (min-width: 992px) {
+    padding-top: 100px;
+  }
+}
+
 .header {
   background-color: #25224e;
 }
@@ -539,20 +546,27 @@ hr {
   // height: 600px;
   height: auto;
   min-height: 550px !important;
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 992px) {
     // height: 550px;
-    width: 19rem !important;
+    width: 100%;
   }
 }
 @media only screen and (max-width: 600px) {
   .headerdropdown {
-    width: 100px;
+    width: 195px !important;
   }
   .prePended {
     background: #fcdfe9 !important;
     display: none;
   }
 }
+
+.token-info {
+  small {
+    line-height: 1;
+  }
+}
+
 .cardBox {
   // height:120px;
   background: #fff;
@@ -673,10 +687,28 @@ hr {
   display: flex;
   flex-direction: row;
   align-items: center;
+  .svg-kawa {
+    width: 100%;
+    max-width: 105px;
+    margin: 0;
+
+    @media screen and (max-width: 992px) {
+      display: none;
+    }
+  }
 }
-.navbar-brand .svg-kawa {
-  max-width: 105px;
-  margin: 0;
+
+.bs-popover-bottom > .arrow {
+  left: -4px !important;
+  @media screen and (min-width: 992px) {
+    left: -6px !important;
+  }
+}
+
+.navbar-collapse {
+  @media screen and (max-width: 992px) {
+    margin-right: 0 !important;
+  }
 }
 
 .walletsetup {
