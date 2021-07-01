@@ -63,7 +63,7 @@ const SignIn = props => {
                 <Col lg={{ span: 4, offset: 4 }}  className="p-4 d-flex flex-column justify-content-center">
                     <Row style={{marginRight:0}}>
                         <Col lg={{offset:5}} sm={{span:0}} >
-                            <Image src={dogAvtar} roundedCircle style={{ maxWidth: '100px', maxHeight: '100px' }} />
+                            <Image src={dogAvtar} roundedCircle style={{ maxWidth: '112px', maxHeight: '112px', marginLeft:'auto', marginRight:'auto', display:'block' }} />
                         </Col>
                     </Row>
                     <Row>
