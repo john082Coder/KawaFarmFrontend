@@ -212,7 +212,7 @@ const DashBoard = () => {
                     account={account}
               />}
               
-                    <div md="10" lg="6" xl="4" className= "mt-2 ml-0" class="stake-card-container">
+                    <div md="10" lg="6" xl="4" className= "mt-2 ml-0 stake-card-container">
                         <Card style={{ width: '22rem' }} className="stake_card">
                             <Card.Body style={{
                                 display: 'flex',
