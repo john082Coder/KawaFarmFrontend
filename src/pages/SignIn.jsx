@@ -61,10 +61,10 @@ const SignIn = props => {
     return (
         <Container fluid className="main_layout loginGradiant">
             <Row style={{ zIndex: '10000', opacity:1 }} >
-                <Col lg={{ span: 4, offset: 4 }}  className="d-flex flex-column justify-content-center" style={{maxWidth:'480px', marginLeft: 'auto', marginRight:'auto', width:'100%', padding:'75px 0' }}>
-                    <Row style={{marginRight:0}}>
-                        <Col sm={{span:0}} >
-                            <Image src={dogAvtar} roundedCircle style={{ maxWidth: '112px', maxHeight: '112px', marginLeft:'auto', marginRight:'auto', display:'block' }} />
+                <Col lg={{ span: 4, offset: 4 }}  className="d-flex flex-column justify-content-center" style={{maxWidth:'480px', marginLeft: 'auto', marginRight:'auto', width:'100%', padding:'60px 0' }}>
+                    <Row>
+                        <Col sm={{span:0}} className="logo-image-container">
+                            <Image src={dogAvtar} roundedCircle style={{ marginLeft:'auto', marginRight:'auto', display:'block' }} />
                         </Col>
                     </Row>
                     <Row>
@@ -73,8 +73,8 @@ const SignIn = props => {
                         </Col>
                     </Row>
                     <Row>
-                        <Col lg={12} className="text-center">
-                            <span className="text-center">Farm <span style={{ color: "#FF2E59" }}>$xKAWA</span> by staking the most popular community tokens such as SHIB, KISHU, AKITA and more!</span>
+                        <Col lg={12} className="text-center intro-text">
+                            <span className="text-center">Farm <strong style={{ color: "#FF2E59", fontFamily:"Visby 800" }}>$xKAWA</strong> by staking the most popular community tokens such as SHIB, KISHU, AKITA and more!</span>
                         </Col>
                     </Row>
                     <Row>
@@ -82,7 +82,7 @@ const SignIn = props => {
 
                             <div className="p-4 m-4 loginBox" style={{ background: 'white', borderRadius: '12px' }}>
                                 <Row className="p-4 text-center">
-                                    <Col lg={12}><h3 style={{fontSize:'32px', letterSpacing:'-0.04em'}}>Connect your wallet to start farming</h3></Col>
+                                    <Col lg={12}><h3 style={{letterSpacing:'-0.04em'}}>Connect your wallet to start farming</h3></Col>
                                     <Col lg={12} className="pt-4"><p style={{ color: "#DE4949", fontSize:'14px', lineHeight:'21px' }}>You are about to input highly sensitive information, please DO NOT expose to strangers.</p></Col>
                                 </Row>
                                 <Button
@@ -113,7 +113,9 @@ const SignIn = props => {
                                
                             </div>
                             <div className="wallet-set-up-link-box mx-4">
+
                                     <p className="walletsetup text-center"><a href="https://metamask.io/faqs" target="_blank" rel="noreferrer">Don't have a wallet set up?</a></p>
+
                                 </div>
 
                         </Col>

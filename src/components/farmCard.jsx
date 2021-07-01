@@ -146,7 +146,7 @@ const FarmCard = (props) => {
         <>
             {(rows[0].length > 0) ? (
                 rows.map((poolRow, i) => (
-                    <div key={i} md="10" lg="6" xl="4" style ={{display:'inline-flex'}}>
+                    <div key={i} md="10" lg="6" xl="4" className="stake-card-container">
                         {poolRow.map((pool, j) => (
                            
                             
@@ -369,16 +369,16 @@ const CoinCard = (props) => {
                             </div>
                         </Col>
                         <Col lg={12}>
-                            <div className="d-flex justify-content-between p-0">
+                            <div className="d-flex justify-content-between p-0 align-items-end">
                                 <div>
                                     <small className="card_stake_text"><strong style={{ paddingLeft: 12 }}>xKAWA EARNED</strong></small>
                                     <Form.Control size="lg" style={{ border: "none" }} type="text" value={earned} disabled />
                                 </div>
-                                <div className="py-2">
+                                <div className="pt-2">
                                     <InputGroup.Prepend >
                                         <InputGroup.Text style={{ background: "#fff", border: 'none' }}>
                                             <small><strong className="card_stake_text pt-2">
-                                                <Button className="cardButton" disabled style={{ border: "none", background: "rgba(239, 239, 239, 0.6)", color: "#ABABAB" }}>Harvest</Button>
+                                                <Button className="cardButton" disabled style={{ border: "none", background: "rgba(239, 239, 239, 1)",opacity:"1", color: "#ABABAB" }}>Harvest</Button>
                                             </strong></small>
                                         </InputGroup.Text>
                                     </InputGroup.Prepend>
@@ -417,7 +417,7 @@ const CoinCard = (props) => {
                             )}       
                     </Col>
                 </Row>
-                <div className="p-4">
+                <div className="px-4 pt-4">
                     <Row>
                         <Col lg={6} className="text-left">
                             <small className="card_stake_text color-gray">
