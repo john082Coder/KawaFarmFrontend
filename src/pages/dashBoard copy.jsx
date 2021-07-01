@@ -478,7 +478,7 @@ const DashBoard = () => {
                             <Col lg={{span:4,order:"first"}} sm={{order:'second'}} xs={{span:12,order:'second'}} className="formlabel footerClass">
                                 <span className="px-1">Contact Us</span>
                                 <span className="px-2">FAQ</span>
-                                <span className="px-2">Bussiness Enquiries</span>
+                                <span className="px-2">Business Enquiries</span>
                             </Col>
                             <Col lg={{ span: 3, offset: 2,order:"second" }} sm={{span:12,order:'first'}} xs={{span:12,order:'first'}} className="formlabel footerClass">2021 Kawakami Inu™</Col>
                             <Col lg={{ span: 3,order:"last" }} sm={{span:12,order:'last'}} xs={{span:12,order:'last'}} className="formlabel footerClass">

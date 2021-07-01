@@ -8,6 +8,7 @@ import Metamask from "../assets/metamask.svg";
 import MetamaskDark from "../assets/metamask-dark.svg";
 import WConnect from "../assets/wallet-connect.svg";
 import WConnectDark from "../assets/wallet-Connect-dark.svg";
+import logoKawafarm from "../assets/logo-kawafarm.svg";
 import { useWallet } from 'use-wallet';
 import Footer from '../components/footer'
 const SignIn = props => {
@@ -60,15 +61,15 @@ const SignIn = props => {
     return (
         <Container fluid className="main_layout loginGradiant">
             <Row style={{ zIndex: '10000', opacity:1 }} >
-                <Col lg={{ span: 4, offset: 4 }}  className="p-4 d-flex flex-column justify-content-center">
+                <Col lg={{ span: 4, offset: 4 }}  className="d-flex flex-column justify-content-center" style={{maxWidth:'480px', marginLeft: 'auto', marginRight:'auto', width:'100%', padding:'75px 0' }}>
                     <Row style={{marginRight:0}}>
-                        <Col lg={{offset:5}} sm={{span:0}} >
+                        <Col sm={{span:0}} >
                             <Image src={dogAvtar} roundedCircle style={{ maxWidth: '112px', maxHeight: '112px', marginLeft:'auto', marginRight:'auto', display:'block' }} />
                         </Col>
                     </Row>
                     <Row>
                         <Col lg={12}>
-                            <h1 className="text-center farm-title">KawaFarm</h1>
+                            <img alt="KawaFarm" src={logoKawafarm} className="svg-kawa" />
                         </Col>
                     </Row>
                     <Row>
@@ -81,8 +82,8 @@ const SignIn = props => {
 
                             <div className="p-4 m-4 loginBox" style={{ background: 'white', borderRadius: '12px' }}>
                                 <Row className="p-4 text-center">
-                                    <Col lg={12}><h3>Connect your wallet to start farming</h3></Col>
-                                    <Col lg={12} className="p-4"><p style={{ color: "#DE4949" }}>You are about to input highly sensitive information, please DO NOT expose to strangers.</p></Col>
+                                    <Col lg={12}><h3 style={{fontSize:'32px', letterSpacing:'-0.04em'}}>Connect your wallet to start farming</h3></Col>
+                                    <Col lg={12} className="pt-4"><p style={{ color: "#DE4949", fontSize:'14px', lineHeight:'21px' }}>You are about to input highly sensitive information, please DO NOT expose to strangers.</p></Col>
                                 </Row>
                                 <Button
                                     variant="light"
@@ -93,20 +94,20 @@ const SignIn = props => {
                                         setModalShow(false);
                                      }}
                                 >
-                                    <span className="text_app mb-0 ml-3 text-left w-fill-available">Connect to Metamask</span>
+                                    <span className="text_app mb-0 text-left w-fill-available">Connect to Metamask</span>
                                     <img src={ Metamask } alt=""/>
 
                                 </Button>
                                 <Button
                                     variant="light"
-                                    className="mx-3 mb-5 wallet-connect-button d-flex align-items-center w-fill-available  bg_harvest"
+                                    className="mx-3 mb-3 wallet-connect-button d-flex align-items-center w-fill-available  bg_harvest"
                                     onClick={()=>history.push('/dashboard')}
                                     // onClick={() => {
                                     //     props.onChangeWallet('walletconnect');
                                     //     props.onHide();
                                     // }}
                                 >
-                                    <span className="text_app mb-0 ml-3 text-left w-fill-available">Use Wallet Connect</span>
+                                    <span className="text_app mb-0 text-left w-fill-available">Use Wallet Connect</span>
                                     <img src={ WConnect } alt=""/>
                                 </Button>
                                
