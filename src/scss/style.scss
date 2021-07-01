@@ -1,3 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap");
+
+.ibm-plex {
+  font-family: "IBM Plex Mono", monospace !important;
+  letter-spacing: 0 !important;
+}
+
+.color-gray {
+  color: #8a8a8a !important;
+}
+
 h1 {
   font-size: 2.3rem;
   @media (max-width: 1200px) {
