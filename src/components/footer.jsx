@@ -9,7 +9,7 @@ const Footer = (props) => {
                         
                         <Col  className="formlabel footerClass">
                             <a href="mailto:business@kawatoken.io" target="_blank"><span className="px-1" style={{fontSize: "14px"}} >Contact Us</span> </a>
-                            <span className="px-2" style={{fontSize: "14px"}}>FAQ</span>
+                            {/* <span className="px-2" style={{fontSize: "14px"}}>FAQ</span> */}
                             <a href="mailto:business@kawatoken.io" target="_blank" rel="noreferrer"><span className="px-2" style={{fontSize: "14px"}}>Business Inquiries</span> </a>
                         </Col>
                         <Col  className="formlabel footerClass text-center" style={{fontSize: "14px"}}>2021 Kawakami Inu™</Col>

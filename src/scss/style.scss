@@ -12,8 +12,29 @@ body {
   color: #8a8a8a !important;
 }
 
+.input-group-prepend {
+  .card_stake_text {
+    button {
+      height: 32px;
+      line-height: 30px;
+      font-size: 13px;
+      text-transform: uppercase;
+      padding: 0 12px;
+    }
+  }
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+  background: none;
+}
+
 .form-control:disabled {
   background: transparent;
+}
+
+input[type="text"]:disabled {
+  color: #000;
 }
 
 h1 {
@@ -55,6 +76,28 @@ hr {
 
 .btn {
   border-radius: 8px;
+  &.successModalButton {
+    font-size: 13px;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 24px;
+    font-family: "Visby 800" !important;
+    letter-spacing: 0.05em;
+  }
+  &.loaderButton {
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  &.addMore,
+  &.withDrawButton {
+    height: 40px;
+    line-height: 40px;
+    font-size: 13px;
+    padding: 0;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
 }
 
 .btn_white {
@@ -606,25 +649,47 @@ hr {
   background: rgba(251, 0, 0, 0.1);
   color: #903434;
   border: none;
-}
-
-.getInTouchButton:hover {
-  background: rgba(255, 166, 166, 0.7);
-  color: #903434;
-  border: none;
+  height: 40px;
+  line-height: 40px;
+  font-size: 13px;
+  padding: 0 24px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  &:focus {
+    box-shadow: none !important;
+    background-color: #ffa6a6 !important;
+    color: #903434 !important;
+  }
+  &:focus-within,
+  &:focus-visible {
+    background-color: #ffa6a6 !important;
+    box-shadow: none !important;
+    color: #903434 !important;
+  }
+  &:active {
+    background-color: #ffa6a6 !important;
+    box-shadow: none !important;
+    color: #903434 !important;
+  }
+  &:hover {
+    background: rgba(255, 166, 166, 0.7);
+    color: #903434;
+    border: none;
+  }
 }
 
 .withDrawButton {
   background: #fae2e9 !important;
   border: 1px solid #ffa8ba;
-
   border-radius: 8px;
   color: #f7215e;
   &:hover {
     color: #ff2e59;
-
     border: 1px solid #ffa8ba !important;
     background: #fae2e9 !important;
+  }
+  @media screen and (max-width: 680px) {
+    margin-bottom: 12px;
   }
 }
 .addMore {
@@ -638,7 +703,12 @@ hr {
 }
 
 .formlabel {
-  font-weight: 700;
+  font-family: "Visby 700";
+  letter-spacing: 0.05em;
+  color: #642828;
+  font-size: 14px;
+  line-height: 24px;
+  margin-bottom: 0;
 }
 .footerClass {
   @media only screen and (max-width: 600px) {
@@ -653,11 +723,6 @@ hr {
   );
 }
 .loginGradiant {
-  background: linear-gradient(
-    180deg,
-    #ffdef2 0%,
-    rgba(255, 197, 111, 0.46) 100%
-  );
   @media screen and (max-width: 992px) {
     .col-lg-12 {
       padding: 0 30px;

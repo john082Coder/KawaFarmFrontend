@@ -42,7 +42,7 @@ export const supportedPools = [
     tokenSymbol: "xKawa",
     icon: kawaCoin,
     poolTitle: "Kawakami Inu Pool",
-    pool: "100%",
+    pool: "90%",
   },
   {
     pid: 1,
@@ -64,7 +64,7 @@ export const supportedPools = [
     tokenSymbol: "xKawa",
     icon: shibaCoin,
     poolTitle: "Shiba Inu Pool",
-    pool: "100%",
+    pool: "50%",
   },
   {
     pid: 2,
@@ -86,7 +86,7 @@ export const supportedPools = [
     tokenSymbol: "xKawa",
     icon: dogeCoin,
     poolTitle: "Dogelon Pool",
-    pool: "100%",
+    pool: "50%",
   },
   {
     pid: 3,
@@ -108,7 +108,7 @@ export const supportedPools = [
     tokenSymbol: "xKawa",
     icon: kishuCoin,
     poolTitle: "Kishu Inu Pool",
-    pool: "100%",
+    pool: "50%",
   },
   {
     pid: 4,
@@ -130,6 +130,6 @@ export const supportedPools = [
     tokenSymbol: "xKawa",
     icon: akitaCoin,
     poolTitle: "Akita Inu Pool",
-    pool: "100%",
+    pool: "50%",
   },
 ];
