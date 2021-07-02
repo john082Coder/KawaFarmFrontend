@@ -590,20 +590,20 @@ h1 {
 
 .stake_card {
   background-color: #fff;
+  border-radius: 25px;
+  height: auto;
+}
+
+@media screen and (min-width: 681px) {
   min-width: 18rem;
   width: 22rem !important;
   max-width: 22rem !important;
-  border-radius: 25px;
-  /* height: 600px; */
-  height: auto;
-  /* min-height: 550px !important; */
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 680px) {
   .stake_card {
-    /* height: 550px; */
     height: auto;
-    width: 19rem !important;
+    width: 100%;
   }
 }
 
@@ -700,7 +700,7 @@ h1 {
 
 @media only screen and (max-width: 600px) {
   .footerClass {
-    text-align: center; 
+    text-align: center;
   }
 }
 
@@ -871,8 +871,10 @@ h6 {
 }
 /*# sourceMappingURL=style.css.map */
 .kawa-footer {
-  a, a:link, a:visited {
-    color: #FFFAFA;
+  a,
+  a:link,
+  a:visited {
+    color: #fffafa;
     text-decoration: none;
     background-color: #778899;
   }

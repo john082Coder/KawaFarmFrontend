@@ -3,6 +3,7 @@ import { Button, Container, Row, Col, Image } from "react-bootstrap";
 import { useHistory } from 'react-router-dom'
 import ExcMark from "../assets/exclamation.svg";
 import dogAvtar from "../assets/dogAvtar.png";
+import HomepageBG from "../assets/bg-homepage.jpg";
 import ExcMarkWhite from "../assets/exclamation-white.svg";
 import Metamask from "../assets/metamask.svg";
 import MetamaskDark from "../assets/metamask-dark.svg";
@@ -59,7 +60,7 @@ const SignIn = props => {
       
 
     return (
-        <Container fluid className="main_layout loginGradiant">
+        <Container fluid className="main_layout loginGradiant" style={{width:'100%', overflowX:'hidden', backgroundSize: 'cover', backgroundImage: "url(" + HomepageBG + ")"}}>
             <Row style={{ zIndex: '10000', opacity:1 }} >
                 <Col lg={{ span: 4, offset: 4 }}  className="d-flex flex-column justify-content-center" style={{maxWidth:'480px', marginLeft: 'auto', marginRight:'auto', width:'100%', padding:'60px 0' }}>
                     <Row>

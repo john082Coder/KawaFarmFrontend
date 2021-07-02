@@ -335,7 +335,7 @@ const CoinCard = (props) => {
                 <div className="d-flex justify-content-between p-3 token-info">
                     <div>
                         <h6 className='mb-0' style={{ color: '#977D83' }}>Weight</h6>
-                        <strong>100$</strong>
+                        <strong>{cardData.pool}</strong>
                     </div>
                     <div>
                         <h6 className='mb-0' style={{ color: '#977D83' }}>Stake</h6>
@@ -405,7 +405,7 @@ const CoinCard = (props) => {
                                     Approving...</strong>
                                 </Button>
                             ): (
-                                <Button variant="light" style={{ border: '1px solid #E6E5E5', fontSize:'12px', color:'#000000', textTransform:'uppercase', backgroundColor:'transparent' }} onClick={handleApprove} block><strong>Approve Contract</strong></Button>
+                                <Button variant="light" style={{ border: '1px solid #E6E5E5', fontSize:'13px', color:'#000000', textTransform:'uppercase', backgroundColor:'transparent' }} onClick={handleApprove} block><strong>Approve Contract</strong></Button>
                             )}
                             </>
                         ) : (    
@@ -417,26 +417,26 @@ const CoinCard = (props) => {
                             )}       
                     </Col>
                 </Row>
-                <div className="px-4 pt-4">
+                <div className="px-4 pt-4 stake-info">
                     <Row>
-                        <Col lg={6} className="text-left">
+                        <Col sm={6} className="text-left">
                             <small className="card_stake_text color-gray">
                                 TOTAL VALUE
                             </small>
                         </Col>
-                        <Col lg={6} className="text-left">
+                        <Col sm={6} className="text-left">
                             <small className="card_stake_text color-gray">
                                 MY STAKE
                             </small>
                         </Col>
                     </Row>
                     <Row>
-                        <Col lg={6} className="text-left">
+                        <Col sm={6} className="text-left">
                             <small className="card_stake_text  ibm-plex color-gray">
                                 {totalLpValue} {cardData.name}
                             </small>
                         </Col>
-                        <Col lg={6} className="text-left">
+                        <Col sm={6} className="text-left">
                             <small className="card_stake_text ibm-plex color-gray">
                                 {staked} {cardData.name}
                             </small>
@@ -533,12 +533,12 @@ const CoinCard = (props) => {
                             </div>
                         </Col>
                         <Col lg={12}>
-                            <div className="d-flex justify-content-between p-0">
+                            <div className="d-flex justify-content-between p-0 align-items-end">
                                 <div>
                                     <small className="card_stake_text"><strong style={{ paddingLeft: 16 }}>xKAWA EARNED</strong></small>
                                     <Form.Control size="lg" style={{ border: "none" }} type="text" value={earned} disabled />
                                 </div>
-                                <div className="py-2">
+                                <div className="pt-2">
                                     <InputGroup.Prepend >
                                         <InputGroup.Text style={{ background: "#fff", border: 'none' }}>
                                             <small><strong className="card_stake_text pt-2">
@@ -552,7 +552,7 @@ const CoinCard = (props) => {
                     </Row>
 
                 </div>
-                <Row className="-2">
+                <Row className="p-2">
                     <Col lg={6} style={{ display: "grid" }}>
                         <Button className="withDrawButton" disabled={loader} onClick={() => { handleWithdraw();}}>Withdraw</Button>
                     </Col>
@@ -560,26 +560,26 @@ const CoinCard = (props) => {
                         <Button className="addMore" disabled={loader} onClick={() => { handleAddMore(); }}>Add More</Button>
                     </Col>
                 </Row>
-                <div className="p-4">
+                <div className="p-4 stake-info">
                     <Row>
-                        <Col lg={6} className="text-center">
+                        <Col sm={6} className="text-left">
                             <small className="card_stake_text">
                                 TOTAL VALUE
                             </small>
                         </Col>
-                        <Col lg={6} className="text-center">
+                        <Col sm={6} className="text-left">
                             <small className="card_stake_text">
                                 MY STAKE
                             </small>
                         </Col>
                     </Row>
                     <Row>
-                        <Col lg={6} className="text-left">
+                        <Col sm={6} className="text-left">
                             <small className="card_stake_text ibm-plex">
                                 {totalLpValue} {cardData.name}
                             </small>
                         </Col>
-                        <Col lg={6} className="text-left">
+                        <Col sm={6} className="text-left">
                             <small className="card_stake_text ibm-plex">
                                 {staked} {cardData.name}
                             </small>

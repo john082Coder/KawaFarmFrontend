@@ -55,8 +55,9 @@
   border-bottom-right-radius: 16px;
   margin-top: 0px !important;
 
-  a, a:link, a:visited {
-    
+  a,
+  a:link,
+  a:visited {
     text-decoration: none;
     color: rgb(171, 109, 119);
   }
@@ -67,31 +68,18 @@
   line-height: 1.2;
   letter-spacing: -0.03em;
   font-size: 32px;
+  line-height: 40px;
+  padding-right: 20%;
   @media screen and (min-width: 992px) {
     line-height: 159%;
     font-size: 40px;
-  }
-}
-
-.kawa-footer {
-  a,
-  a:link,
-  a:visited {
-    text-decoration: none;
-    color: rgb(171, 109, 119);
-  }
-  @media screen and (max-width: 992px) {
-    margin-bottom: 1em;
-    min-height: 200px;
+    padding-right: 0;
   }
 }
 
 .stake-card-container {
   display: flex;
   flex-direction: column;
-  .stake-card {
-    width: 100% !important;
-  }
   @media screen and (min-width: 992px) {
     flex-direction: row;
     display: inline-flex;
@@ -100,6 +88,8 @@
 
 .stake_card {
   border: 1px solid rgba(224, 199, 200, 0.5);
+  margin-right: 25px !important;
+  margin-bottom: 24px !important;
   h5 {
     font-family: "Visby 800" !important;
     font-weight: 400 !important;
@@ -137,11 +127,128 @@
       }
     }
   }
+  @media screen and (max-width: 992px) {
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    margin-right: 0 !important;
+  }
 }
+
+.stake-info {
+  @media screen and (max-width: 680px) {
+    .text-left {
+      padding-left: 0;
+      width: 45%;
+    }
+  }
+}
+
 .kawa-footer {
-  a, a:link, a:visited {
-    
+  .formlabel {
+    letter-spacing: 0;
+  }
+  a,
+  a:link,
+  a:visited {
     text-decoration: none;
     color: rgb(171, 109, 119);
+    font-weight: 400 !important;
+  }
+  a span {
+    letter-spacing: 0;
+    font-family: "Visby 600" !important;
+    font-weight: 400 !important;
+    line-height: 1;
+  }
+  @media screen and (max-width: 992px) {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5em;
+    min-height: 150px;
+    .text-left,
+    .text-right {
+      text-align: center !important;
+    }
+  }
+}
+
+.card-listed {
+  h2 {
+    font-size: 28px;
+    line-height: 35px;
+    font-family: "Visby 800" !important;
+    font-weight: 400 !important;
+    color: rgba(105, 38, 38, 1);
+    letter-spacing: -0.03em;
+  }
+}
+
+.form-listtoken {
+  background-color: #fefbfb;
+  h1 {
+    color: rgba(83, 4, 30, 1);
+    font-size: 28px;
+    line-height: 36px;
+    letter-spacing: -0.03em;
+    font-family: "Visby 800" !important;
+    font-weight: 400 !important;
+    @media screen and (min-width: 992px) {
+      font-size: 40px;
+      line-height: 50px;
+    }
+  }
+  p {
+    font-family: "Visby 600" !important;
+    font-weight: 400 !important;
+    font-size: 16px;
+    line-height: 24px;
+    strong {
+      font-family: "Visby 800" !important;
+    }
+  }
+  .form-group {
+    .form-control {
+      color: #000;
+      font-size: 16px;
+      font-family: "Visby 600" !important;
+      font-weight: 400 !important;
+      outline: none;
+      box-shadow: none;
+      &::-webkit-input-placeholder {
+        color: #a4a4a4;
+      }
+
+      &:-ms-input-placeholder {
+        color: #a4a4a4;
+      }
+
+      &::placeholder {
+        color: #a4a4a4;
+      }
+      &:active,
+      &:focus {
+        border: 1px solid #ff4848;
+      }
+    }
+  }
+}
+
+.successModal {
+  p {
+    font-size: 16px;
+    line-height: 24px;
+    color: #543939;
+    font-family: "Visby 600" !important;
+    font-weight: 400 !important;
+  }
+  h2 {
+    color: rgba(83, 4, 30, 1);
+    font-size: 28px;
+    line-height: 36px;
+    letter-spacing: -0.03em;
+    font-family: "Visby 800" !important;
+    font-weight: 400 !important;
+    margin: 12px 0;
   }
 }

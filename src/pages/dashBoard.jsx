@@ -4,6 +4,8 @@ import { useHistory } from 'react-router';
 import { useWallet } from 'use-wallet';
 import { bnToDec } from '../utils';
 import Logo from "../assets/dogAvtar.png";
+import CardListedbg from "../assets/bg-listed.jpg";
+import ListedFormBG from "../assets/bg-listed.jpg";
 import LoginIcon from "../assets/loginIcon.svg";
 import Bell from "../assets/bell.svg";
 import tickmarkIcon from "../assets/tickmarkIcon.svg";
@@ -190,7 +192,7 @@ const DashBoard = () => {
                     </Navbar.Collapse> 
                 </Navbar>
             </Container> 
-            <Container className="main-dash-container" style={{ paddingTop: '100px', maxWidth:'1140px' }}>
+            <Container className="main-dash-container" style={{maxWidth:'1140px' }}>
                 <Row>
                     <Col xl="12" className="p-2" style={{paddingTop: 0}}>
                         <div className="font-weight-bold farm-top-title" style={{ fontFamily: 'Visby' }}>Stake one or more tokens to earn xKAWA</div>
@@ -212,16 +214,16 @@ const DashBoard = () => {
                     account={account}
               />}
               
-                    <div md="10" lg="6" xl="4" className= "mt-2 ml-0">
-                        <Card style={{ width: '22rem' }} className="stake_card">
+                    <div md="10" lg="6" xl="4" className= "mt-2 ml-0 card-listed">
+                        <Card className="stake_card" style={{backgroundSize: 'cover', backgroundImage: "url(" + CardListedbg + ")"}}>
                             <Card.Body style={{
                                 display: 'flex',
                                 textalign: 'center',
                                 alignItems: 'center'
                             }}>
-                                <div className="mx-auto p-4" style={{ textAlign: "center" }}>
+                                <div className="mx-auto p-3" style={{ textAlign: "center" }}>
                                     <Row><Col><img src={LoginIcon} alt=""/></Col></Row>
-                                    <Row><Col><h2>Want to see your dog token listed?</h2></Col></Row>
+                                    <Row><Col><h2 className="my-4">Want to see your dog token listed?</h2></Col></Row>
                                     <Row>
                                         <Col>
                                             <div >
@@ -237,8 +239,8 @@ const DashBoard = () => {
                     </div>
                 </Row>
                 <Modal show={show} onHide={handleClose} animation={false} style={{ borderRadius: '24px' }}>
-                    <Modal.Body className="p-0">
-                        <div className="p-4 gradient" style={{ background: '#FEFBFB' }}>
+                    <Modal.Body className="p-0 form-listtoken">
+                        <div className="gradient" style={{ backgroundSize: 'cover', backgroundImage: "url(" + ListedFormBG + ")"}}>
 
                             <Row className="p-4 pb-0">
                                 <Col lg={12}>
@@ -246,15 +248,15 @@ const DashBoard = () => {
                                 </Col>
                                 <Col lg={12}>
                                     <div className="mx-auto" style={{ maxWidth: '400px' }}>
-                                        <p className="text-center">Complete the form below if you’d like to discuss partnership opportunities.</p>
+                                        <p className="text-center mb-0">Complete the form below if you’d like to discuss partnership opportunities.</p>
                                     </div>
 
                                 </Col>
                             </Row>
                         </div>
-                        <div className="mx-auto py-4" style={{ maxWidth: '360px' }}>
+                        <div className="mx-auto py-4" style={{ maxWidth: '360px', padding:'0 15px' }}>
                             <Row>
-                                <Col lg={12}><p style={{ color: '#F51C66', fontWeight: 'bold' }}>KawaFarm application form</p></Col>
+                                <Col lg={12}><p style={{ color: '#F51C66' }}><strong>KawaFarm application form</strong></p></Col>
                                 <Col lg={12}>
                                     <Form onSubmit={onFormSubmit}>
                                         <Form.Group controlId="projectname">
