@@ -600,7 +600,7 @@ h1 {
 
 @media only screen and (max-width: 600px) {
   .stake_card {
-    height: 650px;
+    height: 550px;
     width: 19rem !important;
   }
 }

@@ -37,7 +37,52 @@
   margin-top: 0px !important;
 }
 .farm-top-title {
-  font-weight: 800;
+  font-family: "Visby 800" !important;
+  font-weight: 400 !important;
   font-size: 40px;
   line-height: 159%;
+  letter-spacing: -0.03em;
+}
+
+.stake-card-container {
+  width: 100%;
+  justify-content: space-between;
+}
+
+.stake_card {
+  border: 1px solid rgba(224, 199, 200, 0.5);
+  h5 {
+    font-family: "Visby 800" !important;
+    font-weight: 400 !important;
+    color: #000;
+    font-size: 24px;
+    letter-spacing: -0.03em;
+  }
+  small {
+    color: #977d83;
+    font-weight: 400 !important;
+    letter-spacing: 0.05em;
+    font-size: 12px;
+  }
+  .card-header {
+    border-bottom: 1px solid rgba(224, 199, 200, 0.5);
+  }
+  .token-info {
+    padding-top: 12px !important;
+    h6 {
+      font-family: "Visby 600" !important;
+      font-weight: 400 !important;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      strong {
+        font-family: "Visby 800" !important;
+        font-weight: 400 !important;
+        font-size: 16px;
+        line-height: 25px;
+        color: #000;
+        letter-spacing: -0.02em;
+      }
+    }
+  }
 }
